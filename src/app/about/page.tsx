@@ -312,7 +312,7 @@ export default function AboutPage() {
                       <item.icon className="w-5 h-5 text-primary" />
                     </div>
                     <div>
-                      <h4 className="font-bold text-brand-navy dark:text-white text-lg">
+                      <h4 className="font-bold text-brand-navy dark:text-white text-lg textw">
                         {item.title}
                       </h4>
                       <p className="text-muted-foreground">{item.desc}</p>
@@ -348,7 +348,7 @@ export default function AboutPage() {
                   <div className="inline-block px-3 py-1 bg-brand-yellow/20 text-brand-yellow rounded-full text-xs font-bold mb-3 border border-brand-yellow/20">
                     March 2025
                   </div>
-                  <h3 className="text-2xl font-bold">
+                  <h3 className="text-2xl font-bold text-white">
                     APHEET Project Launch Workshop
                   </h3>
                 </div>
@@ -377,7 +377,7 @@ export default function AboutPage() {
             <span className="text-brand-yellow font-bold text-sm tracking-widest uppercase mb-3 block">
               Our Journey
             </span>
-            <h2 className="text-3xl md:text-5xl font-bold">
+            <h2 className="text-3xl md:text-5xl font-bold text-white">
               Milestones &{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-yellow to-brand-yellow/60">
                 Achievements

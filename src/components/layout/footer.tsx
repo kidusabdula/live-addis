@@ -79,7 +79,7 @@ export function Footer() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="text-2xl md:text-3xl font-bold mb-2"
+                className="text-2xl md:text-3xl font-bold mb-2 text-white"
               >
                 Stay Updated
               </motion.h3>

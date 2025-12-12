@@ -10,15 +10,24 @@ import {
   Heart,
   MessageCircle,
   ArrowRight,
+  BookOpen,
 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 
 import postsData from "@/data/clean_data.json";
 
-// Filter out posts without substantial content
+const BROKEN_IMAGES = [
+  "/images/posts/d374cee7305200ad25c791ea44a95fb7.jpg",
+  "/images/posts/f52ff913ef0012107148782b7d65de51.jpg",
+];
+
+// Filter out posts without substantial content and broken images
 const blogPosts = postsData.filter(
   (post) =>
-    post.text.length > 50 && (post.media.length > 0 || post.text.length > 200)
+    post.text.length > 50 &&
+    (post.media.length > 0 || post.text.length > 200) &&
+    (post.media.length === 0 ||
+      !BROKEN_IMAGES.includes(post.media[0].local_path))
 );
 
 export default function BlogPage() {
@@ -29,25 +38,22 @@ export default function BlogPage() {
   );
 
   // Featured post (the one with most engagement)
-  const featuredPost = blogPosts.reduce((prev, current) =>
-    prev.likes + prev.comments + prev.shares >
-    current.likes + current.comments + current.shares
-      ? prev
-      : current
-  );
+  // Ensure we have at least one post, otherwise fallback or handle empty
+  const featuredPost =
+    blogPosts.length > 0
+      ? blogPosts.reduce((prev, current) =>
+          prev.likes + prev.comments + prev.shares >
+          current.likes + current.comments + current.shares
+            ? prev
+            : current
+        )
+      : null;
 
   return (
     <>
       {/* Hero Section */}
-      <section className="relative pt-32 pb-16 md:pt-40 md:pb-20 overflow-hidden">
-        <div className="absolute inset-0 hero-gradient opacity-90" />
-        <div className="absolute inset-0 overflow-hidden">
-          <motion.div
-            animate={{ scale: [1, 1.1, 1] }}
-            transition={{ duration: 10, repeat: Infinity }}
-            className="absolute -top-40 -right-40 w-96 h-96 bg-la-gold/20 rounded-full blur-3xl"
-          />
-        </div>
+      <section className="relative pt-32 pb-20 md:pt-40 md:pb-24 overflow-hidden bg-brand-navy">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-primary-light/10 to-transparent opacity-50" />
 
         <div className="relative container-max px-4 md:px-6 text-center text-white">
           <motion.div
@@ -55,26 +61,33 @@ export default function BlogPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <span className="inline-block px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-sm font-medium mb-6">
-              Our Blog
-            </span>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-              Stories of <span className="text-la-gold">Change</span>
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 mb-8 mx-auto">
+              <span className="w-1.5 h-1.5 rounded-full bg-brand-yellow animate-pulse" />
+              <span className="text-sm font-medium text-brand-yellow tracking-wide uppercase">
+                Our Blog
+              </span>
+            </div>
+
+            <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold mb-8 tracking-tight text-white">
+              Stories of{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-yellow to-brand-yellow/70">
+                Change
+              </span>
             </h1>
-            <p className="text-xl text-white/80 max-w-2xl mx-auto mb-8">
+            <p className="text-xl text-white/70 max-w-2xl mx-auto mb-10 font-light">
               Explore updates, success stories, and insights from our programs
               transforming lives across Ethiopia.
             </p>
 
             {/* Search Bar */}
-            <div className="max-w-md mx-auto relative">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/50" />
+            <div className="max-w-xl mx-auto relative group">
+              <Search className="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-white/40 group-focus-within:text-brand-yellow transition-colors" />
               <Input
                 type="text"
                 placeholder="Search articles..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-12 py-6 bg-white/10 border-white/20 text-white placeholder:text-white/50 rounded-full focus-visible:ring-la-teal"
+                className="pl-14 py-7 bg-white/5 border-white/10 text-white placeholder:text-white/40 rounded-full focus-visible:ring-brand-yellow focus-visible:bg-white/10 shadow-lg text-lg transition-all"
               />
             </div>
           </motion.div>
@@ -82,38 +95,58 @@ export default function BlogPage() {
       </section>
 
       {/* Featured Post */}
-      {!searchQuery && (
-        <section className="section-padding bg-background">
+      {!searchQuery && featuredPost && (
+        <section className="py-20 bg-background">
           <div className="container-max px-4 md:px-6">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <span className="inline-block px-4 py-1.5 rounded-full bg-la-gold/10 text-la-navy dark:text-la-gold text-sm font-medium mb-6">
-                Featured Story
-              </span>
+              <div className="flex items-center gap-2 mb-6">
+                <BookOpen className="w-5 h-5 text-primary" />
+                <span className="text-brand-navy font-bold text-sm tracking-widest uppercase">
+                  Featured Story
+                </span>
+              </div>
 
               <Link href={`/blog/${featuredPost.id}`}>
                 <motion.div
                   whileHover={{ y: -5 }}
-                  className="premium-card overflow-hidden grid md:grid-cols-2 gap-0"
+                  className="group bg-white rounded-2xl overflow-hidden grid md:grid-cols-2 gap-0 border border-border/50 shadow-sm hover:shadow-2xl transition-all duration-300"
                 >
-                  {featuredPost.media[0] && (
-                    <div className="relative aspect-[4/3] md:aspect-auto overflow-hidden">
+                  {featuredPost.media[0] ? (
+                    <div className="relative aspect-video md:aspect-auto overflow-hidden">
                       <Image
                         src={featuredPost.media[0].local_path}
                         alt={featuredPost.text.slice(0, 50)}
                         fill
-                        className="object-cover hover:scale-105 transition-transform duration-500"
+                        className="object-cover group-hover:scale-105 transition-transform duration-700"
+                      />
+                      <div className="absolute inset-0 bg-brand-navy/10 group-hover:bg-transparent transition-colors duration-300" />
+                    </div>
+                  ) : (
+                    <div className="bg-muted flex items-center justify-center">
+                      <Image
+                        src="/logo-1.png"
+                        alt="LIVE-ADDIS"
+                        width={120}
+                        height={120}
+                        className="opacity-20"
                       />
                     </div>
                   )}
+
                   <div className="p-8 md:p-12 flex flex-col justify-center">
-                    <h2 className="text-2xl md:text-3xl font-bold mb-4 line-clamp-2">
+                    <div className="mb-4">
+                      <span className="inline-block px-3 py-1 rounded-full bg-brand-yellow/10 text-brand-secondary-dark text-xs font-bold">
+                        Impact Story
+                      </span>
+                    </div>
+                    <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-6 line-clamp-2 text-brand-navy dark:text-white group-hover:text-primary transition-colors">
                       {featuredPost.text.split("\n")[0].slice(0, 100)}
                     </h2>
-                    <p className="text-muted-foreground mb-6 line-clamp-3">
+                    <p className="text-muted-foreground mb-8 line-clamp-3 text-lg leading-relaxed">
                       {featuredPost.text
                         .split("\n")
                         .slice(1)
@@ -121,19 +154,21 @@ export default function BlogPage() {
                         .slice(0, 250)}
                       ...
                     </p>
-                    <div className="flex items-center gap-6 text-sm text-muted-foreground mb-6">
+                    <div className="flex items-center gap-6 text-sm text-muted-foreground mb-8">
                       <span className="flex items-center gap-2">
-                        <Heart className="w-4 h-4 text-red-500" />
+                        <Heart className="w-4 h-4 text-red-500 fill-red-500" />
                         {featuredPost.likes} likes
                       </span>
                       <span className="flex items-center gap-2">
-                        <MessageCircle className="w-4 h-4 text-la-teal" />
+                        <MessageCircle className="w-4 h-4" />
                         {featuredPost.comments} comments
                       </span>
                     </div>
-                    <span className="inline-flex items-center text-la-teal font-medium group">
+                    <span className="inline-flex items-center text-primary font-bold group/btn">
                       Read Full Story
-                      <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                      <div className="ml-3 w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center group-hover/btn:bg-primary group-hover/btn:text-white transition-colors">
+                        <ArrowRight className="w-4 h-4" />
+                      </div>
                     </span>
                   </div>
                 </motion.div>
@@ -144,9 +179,7 @@ export default function BlogPage() {
       )}
 
       {/* Blog Grid */}
-      <section
-        className={`section-padding ${searchQuery ? "pt-8" : ""} bg-muted/30`}
-      >
+      <section className={`py-20 ${searchQuery ? "pt-8" : ""} bg-muted/30`}>
         <div className="container-max px-4 md:px-6">
           {!searchQuery && (
             <motion.div
@@ -155,7 +188,9 @@ export default function BlogPage() {
               viewport={{ once: true }}
               className="mb-12"
             >
-              <h2 className="text-2xl md:text-3xl font-bold">All Stories</h2>
+              <h2 className="text-3xl font-bold text-brand-navy dark:text-white">
+                All Stories
+              </h2>
             </motion.div>
           )}
 
@@ -163,16 +198,21 @@ export default function BlogPage() {
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="text-muted-foreground mb-8"
+              className="text-muted-foreground mb-8 text-lg"
             >
-              Showing {filteredPosts.length} results for &quot;{searchQuery}
-              &quot;
+              Showing results for{" "}
+              <span className="font-semibold text-brand-navy">
+                &quot;{searchQuery}&quot;
+              </span>
             </motion.p>
           )}
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredPosts
-              .filter((post) => !searchQuery || post.id !== featuredPost.id)
+              .filter(
+                (post) =>
+                  !searchQuery || (featuredPost && post.id !== featuredPost.id)
+              )
               .map((post, index) => (
                 <motion.div
                   key={post.id}
@@ -183,35 +223,39 @@ export default function BlogPage() {
                 >
                   <Link href={`/blog/${post.id}`}>
                     <motion.div
-                      whileHover={{ y: -5 }}
-                      className="premium-card h-full flex flex-col"
+                      whileHover={{ y: -8 }}
+                      className="group bg-white h-full flex flex-col rounded-2xl overflow-hidden border border-border/50 hover:border-primary/20 hover:shadow-xl transition-all duration-300"
                     >
                       {post.media[0] ? (
-                        <div className="relative aspect-16/10 overflow-hidden">
+                        <div className="relative aspect-16/10 overflow-hidden bg-muted">
                           <Image
                             src={post.media[0].local_path}
                             alt={post.text.slice(0, 50)}
                             fill
-                            className="object-cover hover:scale-110 transition-transform duration-500"
+                            className="object-cover group-hover:scale-105 transition-transform duration-700"
                           />
+                          <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-brand-navy shadow-sm">
+                            News
+                          </div>
                         </div>
                       ) : (
-                        <div className="aspect-16/10 bg-linear-to-br from-la-navy to-la-teal flex items-center justify-center">
+                        <div className="aspect-16/10 bg-linear-to-br from-brand-navy/5 to-primary/5 flex items-center justify-center">
                           <Image
                             src="/logo-1.png"
                             alt="LIVE-ADDIS"
                             width={80}
                             height={80}
-                            className="opacity-50"
+                            className="opacity-40 grayscale"
                           />
                         </div>
                       )}
+
                       <div className="p-6 flex-1 flex flex-col">
-                        <h3 className="font-semibold text-lg mb-3 line-clamp-2">
+                        <h3 className="font-bold text-lg mb-3 line-clamp-2 text-brand-navy dark:text-white group-hover:text-primary transition-colors">
                           {post.text.split("\n")[0].slice(0, 80)}
                           {post.text.split("\n")[0].length > 80 ? "..." : ""}
                         </h3>
-                        <p className="text-muted-foreground text-sm line-clamp-3 mb-4 flex-1">
+                        <p className="text-muted-foreground text-sm line-clamp-3 mb-6 flex-1">
                           {post.text
                             .split("\n")
                             .slice(1)
@@ -219,19 +263,19 @@ export default function BlogPage() {
                             .slice(0, 150)}
                           ...
                         </p>
-                        <div className="flex items-center justify-between mt-auto pt-4 border-t border-border">
-                          <div className="flex items-center gap-4 text-sm text-muted-foreground">
-                            <span className="flex items-center gap-1">
-                              <Heart className="w-4 h-4" />
+                        <div className="flex items-center justify-between mt-auto pt-4 border-t border-border/50">
+                          <div className="flex items-center gap-4 text-xs font-medium text-muted-foreground">
+                            <span className="flex items-center gap-1.5">
+                              <Heart className="w-3.5 h-3.5" />
                               {post.likes}
                             </span>
-                            <span className="flex items-center gap-1">
-                              <MessageCircle className="w-4 h-4" />
+                            <span className="flex items-center gap-1.5">
+                              <MessageCircle className="w-3.5 h-3.5" />
                               {post.comments}
                             </span>
                           </div>
-                          <span className="text-la-teal text-sm font-medium">
-                            Read More →
+                          <span className="text-primary text-sm font-semibold flex items-center gap-1 group-hover:gap-2 transition-all">
+                            Read More <ArrowRight className="w-3.5 h-3.5" />
                           </span>
                         </div>
                       </div>
@@ -245,10 +289,16 @@ export default function BlogPage() {
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="text-center py-16"
+              className="text-center py-20 bg-white rounded-2xl border border-dashed border-border"
             >
-              <p className="text-muted-foreground text-lg">
-                No articles found matching your search.
+              <div className="w-16 h-16 bg-muted rounded-full flex items-center justify-center mx-auto mb-4">
+                <Search className="w-8 h-8 text-muted-foreground" />
+              </div>
+              <h3 className="text-xl font-bold text-brand-navy mb-2">
+                No stories found
+              </h3>
+              <p className="text-muted-foreground">
+                Try searching for something else.
               </p>
             </motion.div>
           )}
