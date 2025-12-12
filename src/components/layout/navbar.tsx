@@ -118,7 +118,7 @@ export function Navbar() {
           {/* Actions */}
           <div className="flex items-center gap-2">
             {/* Theme Toggle */}
-            {mounted && (
+            {/* {mounted && (
               <Button
                 variant="ghost"
                 size="icon"
@@ -134,7 +134,7 @@ export function Navbar() {
                 <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
                 <span className="sr-only">Toggle theme</span>
               </Button>
-            )}
+            )} */}
 
             {/* CTA Button - Desktop */}
             <Link href="/donate" className="hidden md:block">
