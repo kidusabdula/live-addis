@@ -44,31 +44,33 @@ export function Navbar() {
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
         isScrolled
-          ? "bg-background/80 backdrop-blur-xl border-b border-border/50 shadow-lg"
-          : "bg-transparent"
+          ? "bg-background/80 backdrop-blur-xl border-b border-border/50 shadow-lg py-2"
+          : "bg-transparent py-4"
       )}
     >
       <nav className="container-max px-4 md:px-6">
-        <div className="flex h-16 md:h-20 items-center justify-between">
+        <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 group">
+          <Link href="/" className="flex items-center gap-3 group">
             <motion.div
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="relative w-12 h-12 md:w-14 md:h-14"
+              className="relative w-12 h-12 md:w-14 md:h-14 bg-white rounded-full p-1.5 border border-white/20 shadow-lg overflow-hidden flex items-center justify-center transition-colors"
             >
-              <Image
-                src="/logo-1.png"
-                alt="LIVE-ADDIS Logo"
-                fill
-                className="object-contain"
-                priority
-              />
+              <div className="relative w-full h-full">
+                <Image
+                  src="/logo-1.png"
+                  alt="LIVE-ADDIS Logo"
+                  fill
+                  className="object-contain"
+                  priority
+                />
+              </div>
             </motion.div>
             <span
               className={cn(
-                "font-bold text-lg md:text-xl hidden sm:block transition-colors",
-                isScrolled ? "text-brand-navy" : "text-white"
+                "font-bold text-lg md:text-xl hidden sm:block transition-colors tracking-tight",
+                isScrolled ? "text-brand-navy dark:text-white" : "text-white"
               )}
             >
               LIVE-ADDIS
@@ -76,7 +78,7 @@ export function Navbar() {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-1">
+          <div className="hidden md:flex items-center gap-1 bg-white/5 backdrop-blur-md px-1.5 py-1.5 rounded-full border border-white/10">
             {navItems.map((item) => (
               <Link
                 key={item.href}
@@ -85,10 +87,10 @@ export function Navbar() {
                   "relative px-4 py-2 text-sm font-medium transition-colors rounded-full",
                   pathname === item.href
                     ? isScrolled
-                      ? "text-primary font-semibold"
-                      : "text-brand-yellow font-semibold"
+                      ? "text-brand-navy font-bold"
+                      : "text-brand-yellow font-bold"
                     : isScrolled
-                    ? "text-muted-foreground hover:text-primary"
+                    ? "text-muted-foreground hover:text-brand-navy"
                     : "text-white/80 hover:text-white"
                 )}
               >
@@ -98,9 +100,10 @@ export function Navbar() {
                     layoutId="navbar-indicator"
                     className={cn(
                       "absolute inset-0 rounded-full",
-                      isScrolled ? "bg-primary/5" : "bg-white/10"
+                      isScrolled ? "bg-white shadow-sm" : "bg-white/10"
                     )}
                     transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                    style={{ zIndex: -1 }}
                   />
                 )}
               </Link>
@@ -116,7 +119,7 @@ export function Navbar() {
                 size="icon"
                 onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
                 className={cn(
-                  "rounded-full transition-colors",
+                  "rounded-full transition-colors hidden sm:flex",
                   isScrolled
                     ? "text-muted-foreground hover:text-primary hover:bg-primary/5"
                     : "text-white hover:bg-white/20"
@@ -134,8 +137,8 @@ export function Navbar() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className={cn(
-                  "px-6 py-2.5 font-bold rounded-full shadow-lg transition-all",
-                  "bg-brand-yellow text-brand-navy hover:bg-white hover:shadow-xl"
+                  "px-6 py-2.5 font-bold rounded-full shadow-lg transition-all border-2",
+                  "bg-brand-yellow border-brand-yellow text-brand-navy hover:bg-brand-navy hover:text-brand-yellow hover:border-brand-yellow"
                 )}
               >
                 Donate Now
@@ -149,9 +152,9 @@ export function Navbar() {
                   variant="ghost"
                   size="icon"
                   className={cn(
-                    "rounded-full",
+                    "rounded-full w-12 h-12",
                     isScrolled
-                      ? "text-brand-navy"
+                      ? "text-brand-navy hover:bg-brand-navy/5"
                       : "text-white hover:bg-white/20"
                   )}
                 >
@@ -159,16 +162,19 @@ export function Navbar() {
                   <span className="sr-only">Open menu</span>
                 </Button>
               </SheetTrigger>
-              <SheetContent side="right" className="w-80 p-0">
-                <div className="flex flex-col h-full">
+              <SheetContent
+                side="right"
+                className="w-[300px] sm:w-[400px] p-0 border-l border-white/10"
+              >
+                <div className="flex flex-col h-full bg-background/95 backdrop-blur-xl">
                   {/* Header */}
-                  <div className="flex items-center justify-between p-4 border-b">
+                  <div className="flex items-center justify-between p-6 border-b border-border/50">
                     <Link
                       href="/"
                       onClick={() => setIsOpen(false)}
-                      className="flex items-center gap-2"
+                      className="flex items-center gap-3"
                     >
-                      <div className="relative w-10 h-10">
+                      <div className="relative w-10 h-10 bg-white rounded-full p-1.5 flex items-center justify-center">
                         <Image
                           src="/logo-1.png"
                           alt="LIVE-ADDIS Logo"
@@ -176,13 +182,15 @@ export function Navbar() {
                           className="object-contain"
                         />
                       </div>
-                      <span className="font-bold text-lg">LIVE-ADDIS</span>
+                      <span className="font-bold text-lg text-foreground">
+                        LIVE-ADDIS
+                      </span>
                     </Link>
                   </div>
 
                   {/* Nav Items */}
-                  <nav className="flex-1 p-4">
-                    <div className="space-y-1">
+                  <nav className="flex-1 p-6">
+                    <div className="space-y-2">
                       {navItems.map((item, index) => (
                         <motion.div
                           key={item.href}
@@ -194,10 +202,10 @@ export function Navbar() {
                             href={item.href}
                             onClick={() => setIsOpen(false)}
                             className={cn(
-                              "flex items-center px-4 py-3 rounded-xl text-base font-medium transition-colors",
+                              "flex items-center px-4 py-4 rounded-xl text-lg font-medium transition-colors",
                               pathname === item.href
-                                ? "bg-la-teal/10 text-la-teal"
-                                : "hover:bg-muted"
+                                ? "bg-primary/10 text-primary font-bold"
+                                : "hover:bg-muted text-foreground/80 hover:text-primary"
                             )}
                           >
                             {item.label}
@@ -208,13 +216,29 @@ export function Navbar() {
                   </nav>
 
                   {/* Footer */}
-                  <div className="p-4 border-t">
+                  <div className="p-6 border-t border-border/50">
+                    <div className="flex items-center justify-between mb-6 px-2">
+                      <span className="text-sm text-muted-foreground">
+                        Switch Theme
+                      </span>
+                      <Button
+                        variant="outline"
+                        size="icon"
+                        onClick={() =>
+                          setTheme(theme === "dark" ? "light" : "dark")
+                        }
+                        className="rounded-full"
+                      >
+                        <Sun className="h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+                        <Moon className="absolute h-4 w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+                      </Button>
+                    </div>
                     <Link
                       href="/donate"
                       onClick={() => setIsOpen(false)}
                       className="block w-full"
                     >
-                      <Button className="w-full bg-la-teal hover:bg-la-teal/90 text-white font-semibold py-6 rounded-xl">
+                      <Button className="w-full bg-brand-yellow hover:bg-brand-yellow/90 text-brand-navy font-bold py-6 rounded-xl text-lg shadow-lg">
                         Donate Now
                       </Button>
                     </Link>
