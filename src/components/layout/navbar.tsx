@@ -217,7 +217,7 @@ export function Navbar() {
 
                   {/* Footer */}
                   <div className="p-6 border-t border-border/50">
-                    <div className="flex items-center justify-between mb-6 px-2">
+                    {/* <div className="flex items-center justify-between mb-6 px-2">
                       <span className="text-sm text-muted-foreground">
                         Switch Theme
                       </span>
@@ -232,7 +232,7 @@ export function Navbar() {
                         <Sun className="h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
                         <Moon className="absolute h-4 w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
                       </Button>
-                    </div>
+                    </div> */}
                     <Link
                       href="/donate"
                       onClick={() => setIsOpen(false)}
