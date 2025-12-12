@@ -32,6 +32,11 @@ const faqCategories = [
         answer:
           "We primarily serve unemployed and vulnerable youth in Addis Ababa, specifically in Yeka and LemiKura sub-cities. Our programs target young people who face barriers to employment and need support to develop market-relevant skills and access livelihood opportunities.",
       },
+      {
+        question: "Where are your main offices located?",
+        answer:
+          "Our head office is located in Addis Ababa, Ethiopia. We operate primarily in the Yeka and LemiKura sub-cities for our project implementations.",
+      },
     ],
   },
   {
@@ -120,15 +125,8 @@ export default function FAQPage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative pt-32 pb-16 md:pt-40 md:pb-20 overflow-hidden">
-        <div className="absolute inset-0 hero-gradient opacity-90" />
-        <div className="absolute inset-0 overflow-hidden">
-          <motion.div
-            animate={{ scale: [1, 1.1, 1] }}
-            transition={{ duration: 10, repeat: Infinity }}
-            className="absolute -top-40 -right-40 w-96 h-96 bg-[#FFD700]/20 rounded-full blur-3xl"
-          />
-        </div>
+      <section className="relative pt-32 pb-20 md:pt-40 md:pb-32 overflow-hidden bg-brand-navy">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-primary-light/10 to-transparent opacity-50" />
 
         <div className="relative container-max px-4 md:px-6 text-center text-white">
           <motion.div
@@ -138,27 +136,31 @@ export default function FAQPage() {
           >
             <motion.div
               whileHover={{ rotate: 15 }}
-              className="w-20 h-20 mx-auto rounded-2xl bg-white/10 backdrop-blur-sm flex items-center justify-center mb-6"
+              className="w-20 h-20 mx-auto rounded-3xl bg-white/5 border border-white/10 flex items-center justify-center mb-8 shadow-[0_0_30px_rgba(254,245,165,0.2)]"
             >
-              <HelpCircle className="w-10 h-10 text-[#FFD700]" />
+              <HelpCircle className="w-10 h-10 text-brand-yellow" />
             </motion.div>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-              Frequently Asked <span className="text-[#FFD700]">Questions</span>
+
+            <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold mb-8 tracking-tight text-white">
+              Frequently Asked <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-yellow to-brand-yellow/70">
+                Questions
+              </span>
             </h1>
-            <p className="text-xl text-white/80 max-w-2xl mx-auto mb-8">
+            <p className="text-xl text-white/70 max-w-2xl mx-auto mb-10 leading-relaxed font-light">
               Find answers to common questions about our programs, how to get
               involved, and how we&apos;re making a difference.
             </p>
 
             {/* Search Bar */}
-            <div className="max-w-md mx-auto relative">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/50" />
+            <div className="max-w-xl mx-auto relative group">
+              <Search className="absolute left-6 top-1/2 -translate-y-1/2 w-5 h-5 text-white/50 group-focus-within:text-brand-yellow transition-colors" />
               <Input
                 type="text"
                 placeholder="Search questions..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-12 py-6 bg-white/10 border-white/20 text-white placeholder:text-white/50 rounded-full focus-visible:ring-[#00A896]"
+                className="pl-14 py-7 bg-white/10 hover:bg-white/15 border-white/10 text-white placeholder:text-white/50 rounded-full focus-visible:ring-brand-yellow focus-visible:border-transparent transition-all shadow-xl backdrop-blur-sm text-lg"
               />
             </div>
           </motion.div>
@@ -166,7 +168,7 @@ export default function FAQPage() {
       </section>
 
       {/* FAQ Section */}
-      <section className="section-padding bg-background">
+      <section className="py-24 bg-background">
         <div className="container-max px-4 md:px-6">
           {/* Search Results */}
           {filteredFaqs ? (
@@ -175,8 +177,11 @@ export default function FAQPage() {
               animate={{ opacity: 1 }}
               className="max-w-3xl mx-auto"
             >
-              <p className="text-muted-foreground mb-8">
-                Showing {filteredFaqs.length} results for &quot;{searchQuery}
+              <p className="text-muted-foreground mb-8 text-lg">
+                Showing {filteredFaqs.length} results for &quot;
+                <span className="font-semibold text-brand-navy dark:text-white">
+                  {searchQuery}
+                </span>
                 &quot;
               </p>
 
@@ -191,19 +196,19 @@ export default function FAQPage() {
                     >
                       <AccordionItem
                         value={`search-${index}`}
-                        className="premium-card px-6 border-none"
+                        className="bg-white rounded-2xl border border-border/50 shadow-sm overflow-hidden px-2 hover:shadow-md transition-all"
                       >
-                        <AccordionTrigger className="text-left hover:no-underline py-6">
-                          <div>
-                            <span className="text-xs text-[#00A896] font-medium block mb-1">
+                        <AccordionTrigger className="text-left hover:no-underline py-6 px-4">
+                          <div className="flex flex-col gap-1">
+                            <span className="text-xs text-primary font-bold uppercase tracking-wider mb-1">
                               {faq.category}
                             </span>
-                            <span className="font-semibold">
+                            <span className="font-bold text-lg text-brand-navy">
                               {faq.question}
                             </span>
                           </div>
                         </AccordionTrigger>
-                        <AccordionContent className="text-muted-foreground pb-6">
+                        <AccordionContent className="text-muted-foreground pb-6 px-4 text-base leading-relaxed">
                           {faq.answer}
                         </AccordionContent>
                       </AccordionItem>
@@ -211,15 +216,21 @@ export default function FAQPage() {
                   ))}
                 </Accordion>
               ) : (
-                <div className="text-center py-12">
-                  <p className="text-muted-foreground">
-                    No questions found. Try a different search or browse
-                    categories below.
+                <div className="text-center py-16 bg-muted/20 rounded-3xl border border-dashed border-border">
+                  <div className="w-16 h-16 bg-muted rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Search className="w-8 h-8 text-muted-foreground" />
+                  </div>
+                  <h3 className="text-xl font-bold text-brand-navy mb-2">
+                    No results found
+                  </h3>
+                  <p className="text-muted-foreground mb-6 max-w-sm mx-auto">
+                    We couldn&apos;t find any questions matching your search.
+                    Try different keywords or browse the categories below.
                   </p>
                   <Button
                     variant="outline"
                     onClick={() => setSearchQuery("")}
-                    className="mt-4"
+                    className="rounded-full px-8 border-brand-navy/20 text-brand-navy hover:bg-brand-navy hover:text-white"
                   >
                     Clear Search
                   </Button>
@@ -228,7 +239,7 @@ export default function FAQPage() {
             </motion.div>
           ) : (
             /* Category FAQs */
-            <div className="max-w-3xl mx-auto space-y-12">
+            <div className="max-w-4xl mx-auto space-y-16">
               {faqCategories.map((category, catIndex) => (
                 <motion.div
                   key={category.title}
@@ -237,8 +248,8 @@ export default function FAQPage() {
                   viewport={{ once: true }}
                   transition={{ delay: catIndex * 0.1 }}
                 >
-                  <h2 className="text-2xl font-bold mb-6 flex items-center gap-3">
-                    <span className="w-8 h-8 rounded-lg bg-[#00A896]/10 flex items-center justify-center text-sm text-[#00A896] font-bold">
+                  <h2 className="text-2xl md:text-3xl font-bold mb-8 flex items-center gap-4 text-brand-navy dark:text-white">
+                    <span className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-lg text-primary font-bold shadow-sm">
                       {catIndex + 1}
                     </span>
                     {category.title}
@@ -248,19 +259,19 @@ export default function FAQPage() {
                     {category.faqs.map((faq, faqIndex) => (
                       <motion.div
                         key={faqIndex}
-                        initial={{ opacity: 0, x: -20 }}
+                        initial={{ opacity: 0, x: -10 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: faqIndex * 0.05 }}
                       >
                         <AccordionItem
                           value={`${catIndex}-${faqIndex}`}
-                          className="premium-card px-6 border-none"
+                          className="bg-white rounded-2xl border border-border/50 shadow-sm overflow-hidden px-2 hover:shadow-md transition-all group"
                         >
-                          <AccordionTrigger className="text-left hover:no-underline py-6 font-semibold">
+                          <AccordionTrigger className="text-left hover:no-underline py-6 px-4 font-semibold text-lg text-brand-navy group-hover:text-primary transition-colors">
                             {faq.question}
                           </AccordionTrigger>
-                          <AccordionContent className="text-muted-foreground pb-6 leading-relaxed">
+                          <AccordionContent className="text-muted-foreground pb-6 px-4 text-base leading-relaxed border-t border-border/30 pt-4 mt-2">
                             {faq.answer}
                           </AccordionContent>
                         </AccordionItem>
@@ -275,33 +286,40 @@ export default function FAQPage() {
       </section>
 
       {/* Still Have Questions CTA */}
-      <section className="section-padding bg-muted/30">
+      <section className="py-20 bg-muted/30 border-t border-border/50">
         <div className="container-max px-4 md:px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="premium-card p-8 md:p-12 text-center max-w-2xl mx-auto"
+            className="bg-brand-navy rounded-[2.5rem] p-8 md:p-16 text-center max-w-4xl mx-auto relative overflow-hidden shadow-2xl"
           >
-            <div className="w-16 h-16 mx-auto rounded-2xl bg-[#00A896]/10 flex items-center justify-center mb-6">
-              <MessageCircle className="w-8 h-8 text-[#00A896]" />
+            {/* Background Effects */}
+            <div className="absolute top-0 right-0 w-64 h-64 bg-primary/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+            <div className="absolute bottom-0 left-0 w-64 h-64 bg-brand-yellow/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
+
+            <div className="relative z-10">
+              <div className="w-20 h-20 mx-auto rounded-3xl bg-white/10 backdrop-blur-sm flex items-center justify-center mb-8 shadow-inner border border-white/10">
+                <MessageCircle className="w-10 h-10 text-brand-yellow" />
+              </div>
+              <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">
+                Still Have Questions?
+              </h2>
+              <p className="text-white/70 mb-10 text-lg max-w-2xl mx-auto font-light">
+                Can&apos;t find what you&apos;re looking for? Our team is
+                available to provide you with the answers you need. Reach out to
+                us directly.
+              </p>
+              <Link href="/contact">
+                <Button
+                  size="lg"
+                  className="bg-brand-yellow hover:bg-white text-brand-navy font-bold rounded-full px-10 py-7 text-lg transition-all shadow-lg hover:shadow-xl hover:scale-105"
+                >
+                  Contact Support
+                  <ChevronRight className="ml-2 h-5 w-5" />
+                </Button>
+              </Link>
             </div>
-            <h2 className="text-2xl md:text-3xl font-bold mb-4">
-              Still Have Questions?
-            </h2>
-            <p className="text-muted-foreground mb-8">
-              Can&apos;t find what you&apos;re looking for? Our team is here to
-              help. Reach out and we&apos;ll get back to you within 24-48 hours.
-            </p>
-            <Link href="/contact">
-              <Button
-                size="lg"
-                className="bg-[#00A896] hover:bg-[#00A896]/90 text-white font-semibold rounded-full"
-              >
-                Contact Us
-                <ChevronRight className="ml-2 h-5 w-5" />
-              </Button>
-            </Link>
           </motion.div>
         </div>
       </section>
