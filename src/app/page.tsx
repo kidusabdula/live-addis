@@ -15,6 +15,9 @@ import {
   HeartPulse,
   Briefcase,
   Lightbulb,
+  Building2,
+  Globe,
+  Quote,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -49,6 +52,48 @@ const impactStats = [
   { number: "46", label: "Trainees in 2025", icon: Heart },
 ];
 
+const programPillars = [
+  {
+    icon: GraduationCap,
+    title: "Vocational Training",
+    description:
+      "Equipping youth with marketable technical skills through our partnership with Selam Technical College.",
+    color: "text-blue-500",
+    bg: "bg-blue-500/10",
+  },
+  {
+    icon: Briefcase,
+    title: "Entrepreneurship",
+    description:
+      "Business development support and seed capital guidance for aspiring young entrepreneurs.",
+    color: "text-green-500",
+    bg: "bg-green-500/10",
+  },
+  {
+    icon: HeartPulse,
+    title: "SRH Awareness",
+    description:
+      "Holistic health education focusing on Sexual and Reproductive Health to ensure well-being.",
+    color: "text-red-500",
+    bg: "bg-red-500/10",
+  },
+  {
+    icon: Globe,
+    title: "Environmental Health",
+    description:
+      "Promoting sustainable practices and environmental stewardship within the community.",
+    color: "text-brand-yellow",
+    bg: "bg-brand-yellow/10",
+  },
+];
+
+const partners = [
+  { name: "Merck Family Foundation", icon: Globe },
+  { name: "Karl Kübel Stiftung", icon: Building2 },
+  { name: "Selam College", icon: GraduationCap },
+  { name: "Addis Ababa City Admin", icon: Building2 },
+];
+
 export default function HomePage() {
   const { scrollY } = useScroll();
   const heroOpacity = useTransform(scrollY, [0, 400], [1, 0]);
@@ -58,7 +103,7 @@ export default function HomePage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-brand-navy">
+      <section className="relative min-h-[95vh] flex items-center justify-center overflow-hidden bg-brand-navy">
         {/* Subtle Radial Background - Reduced Gradient */}
         <div className="absolute inset-0 bg-brand-navy" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-primary-light/10 to-transparent opacity-50" />
@@ -114,7 +159,7 @@ export default function HomePage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5 }}
-                className="text-lg md:text-xl text-white/70 mb-10 max-w-xl mx-auto lg:mx-0 leading-relaxed"
+                className="text-lg md:text-xl text-white/70 mb-10 max-w-xl mx-auto lg:mx-0 leading-relaxed font-light"
               >
                 Empowering Ethiopian youth through vocational training,
                 entrepreneurship, and holistic health awareness for a
@@ -158,19 +203,19 @@ export default function HomePage() {
                 {/* Orbital System */}
                 <div className="relative w-[450px] h-[450px]">
                   {/* Central Core */}
-                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-brand-navy rounded-full flex items-center justify-center border-4 border-white/5 z-20 shadow-2xl">
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-36 h-36 bg-white/5 backdrop-blur-md rounded-full flex items-center justify-center border border-white/10 z-20 shadow-[0_0_50px_rgba(255,255,255,0.1)]">
                     <div className="text-center p-4">
-                      <span className="block text-3xl font-bold text-white mb-0.5">
+                      <span className="block text-4xl font-bold text-white mb-0.5">
                         20+
                       </span>
                       <span className="text-[10px] uppercase tracking-wider text-brand-yellow font-bold">
-                        Years
+                        Years Impact
                       </span>
                     </div>
                   </div>
 
                   {/* Rings */}
-                  <div className="absolute inset-0 border border-white/5 rounded-full animate-[spin_60s_linear_infinite]" />
+                  <div className="absolute inset-0 border border-white/10 rounded-full animate-[spin_60s_linear_infinite]" />
                   <div className="absolute inset-16 border border-white/5 rounded-full animate-[spin_40s_linear_infinite_reverse]" />
 
                   {/* Floating Icons */}
@@ -181,14 +226,14 @@ export default function HomePage() {
                       repeat: Infinity,
                       ease: "easeInOut",
                     }}
-                    className="absolute top-0 right-10 bg-white/5 backdrop-blur-md p-4 rounded-2xl border border-white/10 shadow-lg flex items-center gap-3 w-44"
+                    className="absolute top-0 right-10 bg-white/10 backdrop-blur-md p-4 rounded-2xl border border-white/20 shadow-xl flex items-center gap-3 w-48"
                   >
-                    <div className="bg-brand-yellow/10 p-2 rounded-lg">
-                      <GraduationCap className="w-5 h-5 text-brand-yellow" />
+                    <div className="bg-brand-yellow/20 p-2.5 rounded-lg">
+                      <GraduationCap className="w-6 h-6 text-brand-yellow" />
                     </div>
                     <div>
                       <h3 className="font-bold text-white text-sm">Skills</h3>
-                      <p className="text-[10px] text-white/50">
+                      <p className="text-[10px] text-white/60">
                         Vocational Training
                       </p>
                     </div>
@@ -202,14 +247,14 @@ export default function HomePage() {
                       ease: "easeInOut",
                       delay: 1,
                     }}
-                    className="absolute bottom-10 left-0 bg-white/5 backdrop-blur-md p-4 rounded-2xl border border-white/10 shadow-lg flex items-center gap-3 w-44"
+                    className="absolute bottom-10 left-0 bg-white/10 backdrop-blur-md p-4 rounded-2xl border border-white/20 shadow-xl flex items-center gap-3 w-48"
                   >
-                    <div className="bg-red-500/10 p-2 rounded-lg">
-                      <HeartPulse className="w-5 h-5 text-red-400" />
+                    <div className="bg-red-500/20 p-2.5 rounded-lg">
+                      <HeartPulse className="w-6 h-6 text-red-400" />
                     </div>
                     <div>
                       <h3 className="font-bold text-white text-sm">Health</h3>
-                      <p className="text-[10px] text-white/50">SRH Awareness</p>
+                      <p className="text-[10px] text-white/60">SRH Awareness</p>
                     </div>
                   </motion.div>
 
@@ -221,14 +266,14 @@ export default function HomePage() {
                       ease: "easeInOut",
                       delay: 0.5,
                     }}
-                    className="absolute top-1/3 -left-10 bg-white/5 backdrop-blur-md p-4 rounded-2xl border border-white/10 shadow-lg flex items-center gap-3 w-44"
+                    className="absolute top-1/3 -left-10 bg-white/10 backdrop-blur-md p-4 rounded-2xl border border-white/20 shadow-xl flex items-center gap-3 w-48"
                   >
-                    <div className="bg-green-500/10 p-2 rounded-lg">
-                      <Briefcase className="w-5 h-5 text-green-400" />
+                    <div className="bg-green-500/20 p-2.5 rounded-lg">
+                      <Briefcase className="w-6 h-6 text-green-400" />
                     </div>
                     <div>
                       <h3 className="font-bold text-white text-sm">Business</h3>
-                      <p className="text-[10px] text-white/50">
+                      <p className="text-[10px] text-white/60">
                         Entrepreneurship
                       </p>
                     </div>
@@ -240,8 +285,27 @@ export default function HomePage() {
         </motion.div>
       </section>
 
+      {/* Partners Strip */}
+      <section className="py-10 bg-brand-navy border-t border-white/5 overflow-hidden">
+        <div className="container-max px-4 md:px-6">
+          <p className="text-center text-white/40 text-sm font-medium uppercase tracking-widest mb-6">
+            Trusted by Amazing Partners
+          </p>
+          <div className="flex flex-wrap justify-center gap-8 md:gap-16 items-center opacity-70 grayscale hover:grayscale-0 transition-all duration-500">
+            {partners.map((partner, i) => (
+              <div key={i} className="flex items-center gap-3 group">
+                <partner.icon className="w-8 h-8 text-white/60 group-hover:text-brand-yellow transition-colors" />
+                <span className="text-lg font-bold text-white/60 group-hover:text-white transition-colors">
+                  {partner.name}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Impact Stats Section - Flat Background, Stackable */}
-      <section className="py-16 bg-brand-navy border-t border-white/5">
+      <section className="py-20 bg-background">
         <div className="container-max px-4 md:px-6">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {impactStats.map((stat, index) => (
@@ -251,15 +315,15 @@ export default function HomePage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="bg-white/5 rounded-2xl p-6 text-center hover:bg-white/10 transition-colors border border-white/5"
+                className="bg-white rounded-[2rem] p-8 text-center hover:shadow-xl transition-all duration-300 border border-border/50 group"
               >
-                <div className="w-12 h-12 mx-auto mb-4 rounded-xl bg-primary-light/10 flex items-center justify-center text-brand-yellow">
-                  <stat.icon className="w-6 h-6" />
+                <div className="w-14 h-14 mx-auto mb-6 rounded-2xl bg-brand-navy/5 flex items-center justify-center text-brand-navy group-hover:bg-brand-navy group-hover:text-brand-yellow transition-colors duration-300">
+                  <stat.icon className="w-7 h-7" />
                 </div>
-                <h3 className="text-3xl font-bold text-white mb-1">
+                <h3 className="text-4xl font-bold text-brand-navy mb-2">
                   {stat.number}
                 </h3>
-                <p className="text-sm font-medium text-white/60 uppercase tracking-wide">
+                <p className="text-sm font-bold text-muted-foreground uppercase tracking-wide">
                   {stat.label}
                 </p>
               </motion.div>
@@ -344,7 +408,7 @@ export default function HomePage() {
                   <div
                     key={post.id}
                     className={`relative rounded-xl overflow-hidden ${
-                      index === 0 ? "col-span-2 aspect-[16/9]" : "aspect-square"
+                      index === 0 ? "col-span-2 aspect-video" : "aspect-square"
                     }`}
                   >
                     <Image
@@ -373,8 +437,100 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* New Section: Our Approach / Pillars */}
+      <section className="py-24 bg-muted/30">
+        <div className="container-max px-4 md:px-6">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <span className="text-brand-navy font-bold text-sm tracking-widest uppercase mb-3 block">
+              Our Approach
+            </span>
+            <h2 className="text-3xl md:text-5xl font-bold text-brand-navy mb-6">
+              Holistic Development
+            </h2>
+            <p className="text-lg text-muted-foreground">
+              We believe in a comprehensive approach to youth empowerment,
+              addressing economic, social, and health dimensions simultaneously.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {programPillars.map((pillar, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="bg-white p-8 rounded-[2rem] hover:shadow-xl transition-all duration-300 group border border-border/50"
+              >
+                <div
+                  className={`w-14 h-14 rounded-2xl ${pillar.bg} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}
+                >
+                  <pillar.icon className={`w-7 h-7 ${pillar.color}`} />
+                </div>
+                <h3 className="text-xl font-bold text-brand-navy mb-3">
+                  {pillar.title}
+                </h3>
+                <p className="text-muted-foreground leading-relaxed text-sm">
+                  {pillar.description}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials */}
+      <section className="py-24 bg-brand-navy text-white relative overflow-hidden">
+        {/* Background decorations */}
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-white/5 rounded-full blur-[100px] opacity-30 pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-brand-yellow/5 rounded-full blur-[100px] opacity-30 pointer-events-none" />
+
+        <div className="container-max px-4 md:px-6 relative z-10">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div>
+              <div className="inline-flex items-center gap-2 mb-6 bg-white/10 px-4 py-2 rounded-full border border-white/10">
+                <Quote className="w-4 h-4 text-brand-yellow" />
+                <span className="text-sm font-medium">Voices of Change</span>
+              </div>
+              <h2 className="text-3xl md:text-5xl font-bold mb-8 leading-tight text-white">
+                See how LIVE-ADDIS is rewriting stories.
+              </h2>
+              <p className="text-xl text-white/70 mb-8 font-light max-w-lg">
+                From unemployed youth to thriving entrepreneurs, our impact is
+                best told by those who live it.
+              </p>
+              <Link href="/about#impact">
+                <Button className="bg-white text-brand-navy hover:bg-brand-yellow hover:text-brand-navy text-lg px-8 py-6 rounded-full font-bold">
+                  View Impact Report
+                </Button>
+              </Link>
+            </div>
+
+            <div className="bg-white/5 backdrop-blur-md border border-white/10 p-8 md:p-12 rounded-[2.5rem] relative">
+              <Quote className="absolute top-8 left-8 w-12 h-12 text-white/10 rotate-180" />
+              <p className="text-xl md:text-2xl leading-relaxed mb-8 relative z-10 font-medium">
+                &quot;The training I received wasn&apos;t just about skills; it
+                was about confidence. I learned that my circumstances don&apos;t
+                define my future. Now I run my own small business and support my
+                family.&quot;
+              </p>
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 bg-brand-yellow rounded-full flex items-center justify-center text-brand-navy font-bold text-lg">
+                  A
+                </div>
+                <div>
+                  <h4 className="font-bold text-lg">Abebe Kebede</h4>
+                  <p className="text-white/60 text-sm">Former Trainee, 2023</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Latest Stories - Slider */}
-      <section className="py-20 md:py-32 bg-muted/30">
+      <section className="py-24 bg-background">
         <div className="container-max px-4 md:px-6">
           <div className="text-center max-w-2xl mx-auto mb-16">
             <span className="text-primary font-bold text-sm tracking-wider uppercase mb-2 block">
@@ -403,30 +559,31 @@ export default function HomePage() {
           >
             {featuredPosts.map((post) => (
               <SwiperSlide key={post.id} className="h-full pb-10">
-                <div className="bg-card h-full rounded-2xl overflow-hidden border border-border shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col group">
-                  <div className="relative aspect-[16/10] overflow-hidden bg-muted">
+                <div className="bg-white h-full rounded-[2rem] overflow-hidden border border-border/50 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col group">
+                  <div className="relative aspect-16/10 overflow-hidden bg-muted">
                     <Image
                       src={post.media[0]?.local_path}
                       alt="Post"
                       fill
                       className="object-cover transition-transform duration-500 group-hover:scale-105"
                     />
-                    <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 text-xs font-bold text-brand-navy rounded-full">
+                    <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-4 py-1.5 text-xs font-bold text-brand-navy rounded-full shadow-sm">
                       News
                     </div>
                   </div>
-                  <div className="p-6 flex flex-col grow">
-                    <h3 className="font-bold text-lg mb-3 line-clamp-2 text-brand-navy dark:text-white group-hover:text-primary transition-colors">
+                  <div className="p-8 flex flex-col grow">
+                    <h3 className="font-bold text-xl mb-3 line-clamp-2 text-brand-navy dark:text-white group-hover:text-primary transition-colors">
                       {post.text.split("\n")[0]}
                     </h3>
-                    <p className="text-muted-foreground text-sm line-clamp-3 mb-6 grow">
+                    <p className="text-muted-foreground text-sm line-clamp-3 mb-6 grow leading-relaxed">
                       {post.text.split("\n").slice(1).join(" ")}
                     </p>
                     <Link
                       href={`/blog/${post.id}`}
-                      className="inline-flex items-center text-sm font-semibold text-primary hover:text-primary-hover mt-auto"
+                      className="inline-flex items-center text-sm font-bold text-brand-navy hover:text-primary mt-auto group/link"
                     >
-                      Read Full Story <ChevronRight className="w-4 h-4 ml-1" />
+                      Read Full Story{" "}
+                      <ChevronRight className="w-4 h-4 ml-1 group-hover/link:translate-x-1 transition-transform" />
                     </Link>
                   </div>
                 </div>
@@ -438,7 +595,8 @@ export default function HomePage() {
             <Link href="/blog">
               <Button
                 size="lg"
-                className="rounded-full bg-brand-navy text-white hover:bg-brand-navy/90 px-8"
+                variant="outline"
+                className="rounded-full border-brand-navy/20 text-brand-navy hover:bg-brand-navy hover:text-white px-8 py-6 text-lg font-semibold"
               >
                 View All News
               </Button>
@@ -461,7 +619,7 @@ export default function HomePage() {
             <Link href="/donate">
               <Button
                 size="lg"
-                className="bg-brand-navy text-white hover:bg-brand-navy/90 font-bold px-10 py-6 text-lg rounded-full w-full sm:w-auto shadow-xl"
+                className="bg-brand-navy text-white hover:bg-brand-navy/90 font-bold px-10 py-6 text-lg rounded-full w-full sm:w-auto shadow-xl hover:-translate-y-1 transition-all"
               >
                 Donate Now
               </Button>

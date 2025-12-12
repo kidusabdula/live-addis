@@ -8,7 +8,12 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import {
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+  SheetTitle,
+} from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
 
 const navItems = [
@@ -167,6 +172,7 @@ export function Navbar() {
                 className="w-[300px] sm:w-[400px] p-0 border-l border-white/10"
               >
                 <div className="flex flex-col h-full bg-background/95 backdrop-blur-xl">
+                  <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
                   {/* Header */}
                   <div className="flex items-center justify-between p-6 border-b border-border/50">
                     <Link
