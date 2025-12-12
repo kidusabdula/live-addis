@@ -11,6 +11,7 @@ import {
   Users,
   BookOpen,
   Stethoscope,
+  Lock,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -21,28 +22,27 @@ import {
   DialogTitle,
   DialogDescription,
 } from "@/components/ui/dialog";
-
-const donationAmounts = [10, 25, 50, 100, 250, 500];
+const donationAmounts = [500, 1000, 2500, 5000, 10000, 25000];
 
 const impactItems = [
   {
     icon: BookOpen,
-    amount: "$25",
+    amount: "2,500 ETB",
     description: "Provides textbooks and learning materials for one trainee",
   },
   {
     icon: Users,
-    amount: "$50",
+    amount: "5,000 ETB",
     description: "Sponsors one week of vocational training",
   },
   {
     icon: Stethoscope,
-    amount: "$100",
+    amount: "10,000 ETB",
     description: "Funds SRH awareness workshop for 20 youth",
   },
   {
     icon: Gift,
-    amount: "$250",
+    amount: "25,000 ETB",
     description: "Supports a complete entrepreneurship training module",
   },
 ];
@@ -88,15 +88,8 @@ export default function DonatePage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative pt-32 pb-16 md:pt-40 md:pb-20 overflow-hidden">
-        <div className="absolute inset-0 hero-gradient opacity-90" />
-        <div className="absolute inset-0 overflow-hidden">
-          <motion.div
-            animate={{ scale: [1, 1.1, 1] }}
-            transition={{ duration: 10, repeat: Infinity }}
-            className="absolute -top-40 -right-40 w-96 h-96 bg-[#FFD700]/20 rounded-full blur-3xl"
-          />
-        </div>
+      <section className="relative pt-32 pb-20 md:pt-40 md:pb-32 overflow-hidden bg-brand-navy">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-primary-light/10 to-transparent opacity-50" />
 
         <div className="relative container-max px-4 md:px-6 text-center text-white">
           <motion.div
@@ -107,15 +100,25 @@ export default function DonatePage() {
             <motion.div
               animate={{ scale: [1, 1.1, 1] }}
               transition={{ duration: 2, repeat: Infinity }}
-              className="w-20 h-20 mx-auto rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center mb-6"
+              className="w-20 h-20 mx-auto rounded-full bg-white/5 border border-white/10 flex items-center justify-center mb-8 shadow-[0_0_30px_rgba(254,245,165,0.2)]"
             >
-              <Heart className="w-10 h-10 text-[#FFD700]" />
+              <Heart className="w-8 h-8 text-brand-yellow fill-brand-yellow/20" />
             </motion.div>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-              Your Donation{" "}
-              <span className="text-[#FFD700]">Changes Lives</span>
+
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 mb-6">
+              <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+              <span className="text-sm font-medium text-primary-light tracking-wide uppercase">
+                Support Our Mission
+              </span>
+            </div>
+
+            <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold mb-8 tracking-tight text-white">
+              Your Donation <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-yellow to-brand-yellow/70">
+                Changes Lives
+              </span>
             </h1>
-            <p className="text-xl text-white/80 max-w-2xl mx-auto">
+            <p className="text-xl text-white/70 max-w-2xl mx-auto leading-relaxed font-light">
               Support the APHEET program and help empower vulnerable Ethiopian
               youth with skills, opportunities, and hope for a brighter future.
             </p>
@@ -124,24 +127,21 @@ export default function DonatePage() {
       </section>
 
       {/* Impact Section */}
-      <section className="section-padding bg-background">
+      <section className="py-24 bg-background">
         <div className="container-max px-4 md:px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-12"
+            className="text-center mb-16"
           >
-            <span className="inline-block px-4 py-1.5 rounded-full bg-[#00A896]/10 text-[#00A896] text-sm font-medium mb-4">
-              Your Impact
-            </span>
-            <h2 className="text-3xl md:text-4xl font-bold">
-              See How Your Donation{" "}
-              <span className="text-[#00A896]">Helps</span>
+            <h2 className="text-3xl md:text-5xl font-bold text-brand-navy dark:text-white">
+              See How Your Contribution{" "}
+              <span className="text-primary-light">Helps</span>
             </h2>
           </motion.div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
             {impactItems.map((item, index) => (
               <motion.div
                 key={item.amount}
@@ -149,50 +149,52 @@ export default function DonatePage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                whileHover={{ y: -5 }}
-                className="premium-card p-6 text-center"
+                whileHover={{ y: -8 }}
+                className="bg-white p-8 rounded-[2rem] text-center border border-border/50 shadow-sm hover:shadow-xl transition-all duration-300 group"
               >
-                <div className="w-14 h-14 mx-auto rounded-2xl bg-gradient-to-br from-[#00A896]/20 to-[#FFD700]/20 flex items-center justify-center mb-4">
-                  <item.icon className="w-7 h-7 text-[#00A896]" />
+                <div className="w-16 h-16 mx-auto rounded-2xl bg-primary/5 flex items-center justify-center mb-6 group-hover:bg-primary group-hover:text-white transition-colors duration-300">
+                  <item.icon className="w-8 h-8 text-primary group-hover:text-white transition-colors" />
                 </div>
-                <p className="text-2xl font-bold text-[#FFD700] mb-2">
+                <p className="text-3xl font-bold text-brand-navy dark:text-white mb-3">
                   {item.amount}
                 </p>
-                <p className="text-muted-foreground text-sm">
+                <p className="text-muted-foreground text-sm leading-relaxed">
                   {item.description}
                 </p>
               </motion.div>
             ))}
           </div>
-        </div>
-      </section>
 
-      {/* Donation Form */}
-      <section className="section-padding bg-muted/30">
-        <div className="container-max px-4 md:px-6">
+          {/* Donation Form */}
           <div className="max-w-2xl mx-auto">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              className="premium-card p-8 md:p-12"
+              className="bg-white rounded-[2.5rem] p-8 md:p-12 border border-border bg-clip-padding shadow-2xl relative overflow-hidden"
             >
-              <div className="text-center mb-8">
-                <h2 className="text-2xl md:text-3xl font-bold mb-2">
+              {/* Decorative top gradient */}
+              <div className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-brand-yellow via-primary to-brand-navy" />
+
+              <div className="text-center mb-10">
+                <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-brand-yellow/10 mb-4 text-brand-secondary-dark">
+                  <DollarSign className="w-6 h-6" />
+                </div>
+                <h2 className="text-2xl md:text-3xl font-bold mb-3 text-brand-navy">
                   Make a Donation
                 </h2>
                 <p className="text-muted-foreground">
-                  Choose an amount or enter a custom donation
+                  Choose an amount or enter a custom donation.
                 </p>
               </div>
 
               <form onSubmit={handleSubmit} className="space-y-8">
                 {/* Amount Selection */}
-                <div>
-                  <label className="block text-sm font-medium mb-4">
-                    Select Amount
+                <div className="space-y-4">
+                  <label className="text-sm font-bold text-brand-navy ml-1">
+                    Select Amount (ETB)
                   </label>
-                  <div className="grid grid-cols-3 gap-3 mb-4">
+                  <div className="grid grid-cols-3 gap-3">
                     {donationAmounts.map((amount) => (
                       <motion.button
                         key={amount}
@@ -203,18 +205,20 @@ export default function DonatePage() {
                           setSelectedAmount(amount);
                           setCustomAmount("");
                         }}
-                        className={`p-4 rounded-xl font-semibold transition-all ${
+                        className={`p-4 rounded-xl font-bold text-lg transition-all border-2 ${
                           selectedAmount === amount && !customAmount
-                            ? "bg-[#00A896] text-white shadow-lg shadow-[#00A896]/30"
-                            : "bg-muted hover:bg-muted/80"
+                            ? "bg-brand-yellow border-brand-yellow text-brand-navy shadow-lg shadow-brand-yellow/20"
+                            : "bg-background border-border hover:border-brand-yellow/50 hover:bg-muted"
                         }`}
                       >
-                        ${amount}
+                        {amount.toLocaleString()}
                       </motion.button>
                     ))}
                   </div>
-                  <div className="relative">
-                    <DollarSign className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
+                  <div className="relative group">
+                    <span className="absolute left-4 top-1/2 -translate-y-1/2 font-bold text-muted-foreground group-focus-within:text-brand-navy transition-colors text-sm">
+                      ETB
+                    </span>
                     <Input
                       type="number"
                       placeholder="Custom amount"
@@ -223,87 +227,87 @@ export default function DonatePage() {
                         setCustomAmount(e.target.value);
                         setSelectedAmount(null);
                       }}
-                      className="pl-10 py-6 text-lg"
+                      className="pl-14 py-7 text-lg rounded-xl border-2 border-border focus-visible:border-brand-navy focus-visible:ring-0 transition-all font-semibold"
                     />
                   </div>
                 </div>
 
                 {/* Personal Info */}
                 <div className="space-y-4">
-                  <label className="block text-sm font-medium">
+                  <label className="text-sm font-bold text-brand-navy ml-1">
                     Your Information
                   </label>
-                  <Input
-                    type="text"
-                    placeholder="Full Name"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    className="py-6"
-                    required
-                  />
-                  <Input
-                    type="email"
-                    placeholder="Email Address"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="py-6"
-                    required
-                  />
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <Input
+                      type="text"
+                      placeholder="Full Name"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                      className="py-6 rounded-xl border-border/80 focus-visible:ring-primary"
+                      required
+                    />
+                    <Input
+                      type="email"
+                      placeholder="Email Address"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      className="py-6 rounded-xl border-border/80 focus-visible:ring-primary"
+                      required
+                    />
+                  </div>
                 </div>
 
                 {/* Payment Info */}
                 <div className="space-y-4">
-                  <label className="block text-sm font-medium">
-                    Payment Details
+                  <label className="text-sm font-bold text-brand-navy ml-1 flex items-center justify-between">
+                    <span>Payment Details</span>
+                    <span className="flex items-center text-xs font-normal text-muted-foreground bg-muted px-2 py-1 rounded-full">
+                      <Lock className="w-3 h-3 mr-1" /> Secure SSL
+                    </span>
                   </label>
-                  <div className="p-4 rounded-xl bg-muted/50 border border-border">
-                    <p className="text-xs text-muted-foreground mb-4 flex items-center gap-2">
-                      <span className="px-2 py-0.5 rounded bg-yellow-500/10 text-yellow-600 font-medium">
-                        Demo Mode
-                      </span>
-                      No real payment will be processed
-                    </p>
-                    <div className="space-y-3">
-                      <div className="relative">
-                        <CreditCard className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
-                        <Input
-                          type="text"
-                          placeholder="Card Number"
-                          value={cardNumber}
-                          onChange={(e) =>
-                            setCardNumber(formatCardNumber(e.target.value))
-                          }
-                          className="pl-10"
-                          maxLength={19}
-                          required
-                        />
-                      </div>
-                      <div className="grid grid-cols-2 gap-3">
-                        <Input
-                          type="text"
-                          placeholder="MM/YY"
-                          value={expiry}
-                          onChange={(e) =>
-                            setExpiry(formatExpiry(e.target.value))
-                          }
-                          maxLength={5}
-                          required
-                        />
-                        <Input
-                          type="text"
-                          placeholder="CVV"
-                          value={cvv}
-                          onChange={(e) =>
-                            setCvv(
-                              e.target.value.replace(/\D/g, "").slice(0, 4)
-                            )
-                          }
-                          maxLength={4}
-                          required
-                        />
-                      </div>
+                  <div className="p-6 rounded-2xl bg-muted/30 border border-border space-y-4">
+                    <div className="relative">
+                      <CreditCard className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
+                      <Input
+                        type="text"
+                        placeholder="Card Number"
+                        value={cardNumber}
+                        onChange={(e) =>
+                          setCardNumber(formatCardNumber(e.target.value))
+                        }
+                        className="pl-12 py-6 bg-white border-border/80"
+                        maxLength={19}
+                        required
+                      />
+                    </div>
+                    <div className="grid grid-cols-2 gap-4">
+                      <Input
+                        type="text"
+                        placeholder="MM/YY"
+                        value={expiry}
+                        onChange={(e) =>
+                          setExpiry(formatExpiry(e.target.value))
+                        }
+                        maxLength={5}
+                        className="py-6 bg-white border-border/80"
+                        required
+                      />
+                      <Input
+                        type="text"
+                        placeholder="CVV"
+                        value={cvv}
+                        onChange={(e) =>
+                          setCvv(e.target.value.replace(/\D/g, "").slice(0, 4))
+                        }
+                        maxLength={4}
+                        className="py-6 bg-white border-border/80"
+                        required
+                      />
                     </div>
                   </div>
+                  <p className="text-xs text-center text-muted-foreground bg-brand-yellow/10 p-2 rounded-lg text-brand-secondary-dark font-medium border border-brand-yellow/20">
+                    Demo Mode: No real payment will be processed.
+                  </p>
                 </div>
 
                 {/* Submit */}
@@ -311,31 +315,33 @@ export default function DonatePage() {
                   type="submit"
                   size="lg"
                   disabled={!finalAmount || isProcessing}
-                  className="w-full bg-[#00A896] hover:bg-[#00A896]/90 text-white font-semibold py-6 text-lg rounded-xl"
+                  className="w-full bg-brand-navy hover:bg-primary text-white font-bold py-8 text-xl rounded-full shadow-lg hover:shadow-xl transition-all"
                 >
                   {isProcessing ? (
                     <span className="flex items-center gap-2">
-                      <motion.div
-                        animate={{ rotate: 360 }}
-                        transition={{
-                          duration: 1,
-                          repeat: Infinity,
-                          ease: "linear",
-                        }}
-                        className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full"
-                      />
+                      <div className="h-5 w-5 animate-spin rounded-full border-2 border-white border-t-transparent" />
                       Processing...
                     </span>
                   ) : (
-                    `Donate $${finalAmount || 0}`
+                    `Donate ${
+                      finalAmount ? finalAmount.toLocaleString() : 0
+                    } ETB`
                   )}
                 </Button>
               </form>
 
-              <p className="text-center text-sm text-muted-foreground mt-6">
-                Your donation is tax-deductible. You will receive a receipt via
-                email.
-              </p>
+              <div className="mt-8 pt-6 border-t border-border flex justify-center gap-4 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
+                {/* Mock payment icons */}
+                <div className="h-8 w-12 bg-muted rounded flex items-center justify-center text-[10px] font-bold">
+                  VISA
+                </div>
+                <div className="h-8 w-12 bg-muted rounded flex items-center justify-center text-[10px] font-bold">
+                  MC
+                </div>
+                <div className="h-8 w-12 bg-muted rounded flex items-center justify-center text-[10px] font-bold">
+                  Telebirr
+                </div>
+              </div>
             </motion.div>
           </div>
         </div>
@@ -343,36 +349,35 @@ export default function DonatePage() {
 
       {/* Success Modal */}
       <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
-        <DialogContent className="sm:max-w-md">
-          <DialogHeader>
-            <div className="mx-auto w-16 h-16 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center mb-4">
-              <motion.div
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                transition={{ type: "spring", bounce: 0.5 }}
-              >
-                <CheckCircle className="w-8 h-8 text-green-600 dark:text-green-400" />
-              </motion.div>
+        <DialogContent className="sm:max-w-md rounded-3xl p-0 overflow-hidden border-none shadow-2xl">
+          <div className="bg-brand-navy p-8 text-center relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-primary/20 rounded-full -translate-y-1/2 translate-x-1/2 blur-2xl" />
+            <div className="mx-auto w-20 h-20 rounded-full bg-white/10 flex items-center justify-center mb-4 relative z-10">
+              <CheckCircle className="w-10 h-10 text-brand-yellow" />
             </div>
-            <DialogTitle className="text-center text-2xl">
-              Thank You, {name}!
+            <DialogTitle className="text-2xl font-bold text-white mb-2 relative z-10">
+              Thank You, {name || "Supporter"}!
             </DialogTitle>
-            <DialogDescription className="text-center">
-              Your generous mock donation of{" "}
-              <span className="font-semibold text-[#00A896]">
-                ${finalAmount}
-              </span>{" "}
-              will help empower Ethiopian youth through skills development and
-              opportunities.
+            <p className="text-white/70 relative z-10">Donation Successful</p>
+          </div>
+
+          <div className="p-8 bg-white text-center">
+            <DialogDescription className="text-center text-muted-foreground text-lg mb-6">
+              Your generous mock donation of <br />
+              <span className="text-4xl font-bold text-brand-navy block mt-2">
+                {finalAmount?.toLocaleString()} ETB
+              </span>
             </DialogDescription>
-          </DialogHeader>
-          <div className="mt-6 text-center">
-            <p className="text-sm text-muted-foreground mb-4">
-              A confirmation email has been sent to {email}
+
+            <p className="text-sm text-muted-foreground mb-8 bg-muted p-4 rounded-xl">
+              A confirmation email has been sent to{" "}
+              <span className="text-brand-navy font-semibold">{email}</span>.
+              Your support empowers Ethiopian youth.
             </p>
+
             <Button
               onClick={() => setIsModalOpen(false)}
-              className="bg-[#00A896] hover:bg-[#00A896]/90"
+              className="w-full bg-brand-navy hover:bg-primary text-white rounded-xl py-6 font-bold"
             >
               Close
             </Button>
