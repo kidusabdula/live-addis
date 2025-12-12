@@ -63,11 +63,11 @@ export function Footer() {
   };
 
   return (
-    <footer className="relative bg-[#001F3F] text-white overflow-hidden">
+    <footer className="relative bg-brand-navy text-white overflow-hidden">
       {/* Decorative Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-[#00A896]/10 rounded-full blur-3xl" />
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-[#FFD700]/10 rounded-full blur-3xl" />
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-brand-yellow/5 rounded-full blur-3xl" />
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-primary/20 rounded-full blur-3xl" />
       </div>
 
       <div className="relative container-max px-4 md:px-6">
@@ -94,12 +94,12 @@ export function Footer() {
                 placeholder="Enter your email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="flex-1 bg-white/10 border-white/20 text-white placeholder:text-white/50 focus-visible:ring-[#00A896]"
+                className="flex-1 bg-white/5 border-white/10 text-white placeholder:text-white/40 focus-visible:ring-brand-yellow"
                 required
               />
               <Button
                 type="submit"
-                className="bg-[#00A896] hover:bg-[#00A896]/90 text-white font-semibold px-6"
+                className="bg-brand-yellow hover:bg-white text-brand-navy font-bold px-6 transition-colors"
               >
                 {isSubscribed ? "Subscribed!" : "Subscribe"}
               </Button>
@@ -132,20 +132,20 @@ export function Footer() {
             <div className="space-y-3">
               <a
                 href="mailto:info@liveaddis.org"
-                className="flex items-center gap-3 text-white/70 hover:text-white transition-colors"
+                className="flex items-center gap-3 text-white/70 hover:text-brand-yellow transition-colors"
               >
-                <Mail className="w-5 h-5 text-[#00A896]" />
+                <Mail className="w-5 h-5 text-brand-yellow" />
                 <span>info@liveaddis.org</span>
               </a>
               <a
                 href="tel:+251911123456"
-                className="flex items-center gap-3 text-white/70 hover:text-white transition-colors"
+                className="flex items-center gap-3 text-white/70 hover:text-brand-yellow transition-colors"
               >
-                <Phone className="w-5 h-5 text-[#00A896]" />
+                <Phone className="w-5 h-5 text-brand-yellow" />
                 <span>+251 911 123 456</span>
               </a>
               <div className="flex items-start gap-3 text-white/70">
-                <MapPin className="w-5 h-5 text-[#00A896] flex-shrink-0 mt-0.5" />
+                <MapPin className="w-5 h-5 text-brand-yellow shrink-0 mt-0.5" />
                 <span>Addis Ababa, Ethiopia</span>
               </div>
             </div>
@@ -159,7 +159,7 @@ export function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-white/70 hover:text-white transition-colors inline-flex items-center gap-1 group"
+                    className="text-white/70 hover:text-brand-yellow transition-colors inline-flex items-center gap-1 group"
                   >
                     {link.label}
                     <ArrowUpRight className="w-4 h-4 opacity-0 -translate-y-1 translate-x-1 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all" />
@@ -176,7 +176,7 @@ export function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-white/70 hover:text-white transition-colors inline-flex items-center gap-1 group"
+                    className="text-white/70 hover:text-brand-yellow transition-colors inline-flex items-center gap-1 group"
                   >
                     {link.label}
                     <ArrowUpRight className="w-4 h-4 opacity-0 -translate-y-1 translate-x-1 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all" />
@@ -190,10 +190,10 @@ export function Footer() {
             <h4 className="font-semibold text-lg mb-4">Legal</h4>
             <ul className="space-y-3">
               {footerLinks.legal.map((link) => (
-                <li key={link.href}>
+                <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="text-white/70 hover:text-white transition-colors"
+                    className="text-white/70 hover:text-brand-yellow transition-colors"
                   >
                     {link.label}
                   </Link>
@@ -213,7 +213,7 @@ export function Footer() {
                     rel="noopener noreferrer"
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
-                    className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#00A896] transition-colors"
+                    className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-brand-yellow hover:text-brand-navy transition-colors text-white"
                   >
                     <social.icon className="w-5 h-5" />
                     <span className="sr-only">{social.label}</span>

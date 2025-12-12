@@ -76,7 +76,7 @@ export default function ContactPage() {
           <motion.div
             animate={{ scale: [1, 1.1, 1] }}
             transition={{ duration: 10, repeat: Infinity }}
-            className="absolute -top-40 -right-40 w-96 h-96 bg-[#FFD700]/20 rounded-full blur-3xl"
+            className="absolute -top-40 -right-40 w-96 h-96 bg-la-gold/20 rounded-full blur-3xl"
           />
         </div>
 
@@ -90,10 +90,10 @@ export default function ContactPage() {
               whileHover={{ rotate: 15 }}
               className="w-20 h-20 mx-auto rounded-2xl bg-white/10 backdrop-blur-sm flex items-center justify-center mb-6"
             >
-              <MessageSquare className="w-10 h-10 text-[#FFD700]" />
+              <MessageSquare className="w-10 h-10 text-la-gold" />
             </motion.div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-              Get in <span className="text-[#FFD700]">Touch</span>
+              Get in <span className="text-la-gold">Touch</span>
             </h1>
             <p className="text-xl text-white/80 max-w-2xl mx-auto">
               Have questions about our programs or want to get involved?
@@ -121,8 +121,8 @@ export default function ContactPage() {
                     href={info.href}
                     className="premium-card p-6 text-center h-full flex flex-col items-center justify-center group"
                   >
-                    <div className="w-14 h-14 rounded-2xl bg-[#00A896]/10 flex items-center justify-center mb-4 group-hover:bg-[#00A896]/20 transition-colors">
-                      <info.icon className="w-7 h-7 text-[#00A896]" />
+                    <div className="w-14 h-14 rounded-2xl bg-la-teal/10 flex items-center justify-center mb-4 group-hover:bg-la-teal/20 transition-colors">
+                      <info.icon className="w-7 h-7 text-la-teal" />
                     </div>
                     <h3 className="font-semibold mb-1">{info.title}</h3>
                     <p className="text-muted-foreground text-sm">
@@ -131,8 +131,8 @@ export default function ContactPage() {
                   </a>
                 ) : (
                   <div className="premium-card p-6 text-center h-full flex flex-col items-center justify-center">
-                    <div className="w-14 h-14 rounded-2xl bg-[#00A896]/10 flex items-center justify-center mb-4">
-                      <info.icon className="w-7 h-7 text-[#00A896]" />
+                    <div className="w-14 h-14 rounded-2xl bg-la-teal/10 flex items-center justify-center mb-4">
+                      <info.icon className="w-7 h-7 text-la-teal" />
                     </div>
                     <h3 className="font-semibold mb-1">{info.title}</h3>
                     <p className="text-muted-foreground text-sm">
@@ -239,7 +239,7 @@ export default function ContactPage() {
                     type="submit"
                     size="lg"
                     disabled={isSubmitting}
-                    className="w-full bg-[#00A896] hover:bg-[#00A896]/90 text-white font-semibold py-6 rounded-xl"
+                    className="w-full bg-la-teal hover:bg-la-teal/90 text-white font-semibold py-6 rounded-xl"
                   >
                     {isSubmitting ? (
                       <span className="flex items-center gap-2">
@@ -285,9 +285,9 @@ export default function ContactPage() {
                   className="absolute inset-0"
                 />
                 {/* Map overlay with address */}
-                <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-background via-background/90 to-transparent">
+                <div className="absolute bottom-0 left-0 right-0 p-6 bg-linear-to-t from-background via-background/90 to-transparent">
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-[#00A896] flex items-center justify-center">
+                    <div className="w-10 h-10 rounded-full bg-la-teal flex items-center justify-center">
                       <MapPin className="w-5 h-5 text-white" />
                     </div>
                     <div>

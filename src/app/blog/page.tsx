@@ -45,7 +45,7 @@ export default function BlogPage() {
           <motion.div
             animate={{ scale: [1, 1.1, 1] }}
             transition={{ duration: 10, repeat: Infinity }}
-            className="absolute -top-40 -right-40 w-96 h-96 bg-[#FFD700]/20 rounded-full blur-3xl"
+            className="absolute -top-40 -right-40 w-96 h-96 bg-la-gold/20 rounded-full blur-3xl"
           />
         </div>
 
@@ -59,7 +59,7 @@ export default function BlogPage() {
               Our Blog
             </span>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-              Stories of <span className="text-[#FFD700]">Change</span>
+              Stories of <span className="text-la-gold">Change</span>
             </h1>
             <p className="text-xl text-white/80 max-w-2xl mx-auto mb-8">
               Explore updates, success stories, and insights from our programs
@@ -74,7 +74,7 @@ export default function BlogPage() {
                 placeholder="Search articles..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-12 py-6 bg-white/10 border-white/20 text-white placeholder:text-white/50 rounded-full focus-visible:ring-[#00A896]"
+                className="pl-12 py-6 bg-white/10 border-white/20 text-white placeholder:text-white/50 rounded-full focus-visible:ring-la-teal"
               />
             </div>
           </motion.div>
@@ -90,7 +90,7 @@ export default function BlogPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <span className="inline-block px-4 py-1.5 rounded-full bg-[#FFD700]/10 text-[#001F3F] dark:text-[#FFD700] text-sm font-medium mb-6">
+              <span className="inline-block px-4 py-1.5 rounded-full bg-la-gold/10 text-la-navy dark:text-la-gold text-sm font-medium mb-6">
                 Featured Story
               </span>
 
@@ -127,11 +127,11 @@ export default function BlogPage() {
                         {featuredPost.likes} likes
                       </span>
                       <span className="flex items-center gap-2">
-                        <MessageCircle className="w-4 h-4 text-[#00A896]" />
+                        <MessageCircle className="w-4 h-4 text-la-teal" />
                         {featuredPost.comments} comments
                       </span>
                     </div>
-                    <span className="inline-flex items-center text-[#00A896] font-medium group">
+                    <span className="inline-flex items-center text-la-teal font-medium group">
                       Read Full Story
                       <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
                     </span>
@@ -187,7 +187,7 @@ export default function BlogPage() {
                       className="premium-card h-full flex flex-col"
                     >
                       {post.media[0] ? (
-                        <div className="relative aspect-[16/10] overflow-hidden">
+                        <div className="relative aspect-16/10 overflow-hidden">
                           <Image
                             src={post.media[0].local_path}
                             alt={post.text.slice(0, 50)}
@@ -196,7 +196,7 @@ export default function BlogPage() {
                           />
                         </div>
                       ) : (
-                        <div className="aspect-[16/10] bg-gradient-to-br from-[#001F3F] to-[#00A896] flex items-center justify-center">
+                        <div className="aspect-16/10 bg-linear-to-br from-la-navy to-la-teal flex items-center justify-center">
                           <Image
                             src="/logo-1.png"
                             alt="LIVE-ADDIS"
@@ -230,7 +230,7 @@ export default function BlogPage() {
                               {post.comments}
                             </span>
                           </div>
-                          <span className="text-[#00A896] text-sm font-medium">
+                          <span className="text-la-teal text-sm font-medium">
                             Read More →
                           </span>
                         </div>

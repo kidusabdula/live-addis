@@ -13,9 +13,10 @@ import {
   ChevronRight,
   Linkedin,
   Mail,
+  GraduationCap,
 } from "lucide-react";
 
-// Team members based on Facebook scrape context
+// Team members
 const teamMembers = [
   {
     name: "Alemayehu Teshome",
@@ -132,15 +133,9 @@ export default function AboutPage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden">
-        <div className="absolute inset-0 hero-gradient opacity-90" />
-        <div className="absolute inset-0 overflow-hidden">
-          <motion.div
-            animate={{ scale: [1, 1.1, 1] }}
-            transition={{ duration: 10, repeat: Infinity }}
-            className="absolute -top-40 -right-40 w-96 h-96 bg-[#FFD700]/20 rounded-full blur-3xl"
-          />
-        </div>
+      <section className="relative pt-32 pb-20 md:pt-40 md:pb-32 overflow-hidden bg-brand-navy">
+        {/* Subtle Background */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-primary-light/10 to-transparent opacity-50" />
 
         <div className="relative container-max px-4 md:px-6 text-center text-white">
           <motion.div
@@ -148,13 +143,21 @@ export default function AboutPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <span className="inline-block px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-sm font-medium mb-6">
-              About LIVE-ADDIS
-            </span>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-              Our Story of <span className="text-[#FFD700]">Impact</span>
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 mb-8 mx-auto">
+              <span className="w-1.5 h-1.5 rounded-full bg-brand-yellow animate-pulse" />
+              <span className="text-sm font-medium text-brand-yellow tracking-wide uppercase">
+                About LIVE-ADDIS
+              </span>
+            </div>
+
+            <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold mb-8 tracking-tight">
+              Our Story of{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-yellow to-brand-yellow/70">
+                Impact
+              </span>
             </h1>
-            <p className="text-xl text-white/80 max-w-3xl mx-auto">
+
+            <p className="text-xl text-white/70 max-w-3xl mx-auto leading-relaxed font-light">
               Since 2005, we&apos;ve been transforming lives through skills
               development, entrepreneurship, and health awareness programs for
               vulnerable Ethiopian youth.
@@ -164,22 +167,25 @@ export default function AboutPage() {
       </section>
 
       {/* Mission & Vision */}
-      <section className="section-padding bg-background" id="mission">
+      <section className="py-20 bg-background" id="mission">
         <div className="container-max px-4 md:px-6">
-          <div className="grid md:grid-cols-2 gap-12 lg:gap-20">
+          <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
             <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              className="premium-card p-8 md:p-10"
+              className="group bg-white rounded-[2rem] p-8 md:p-12 border border-border/50 shadow-sm hover:shadow-xl transition-all duration-500 relative overflow-hidden"
             >
-              <div className="w-14 h-14 rounded-2xl bg-[#00A896]/10 flex items-center justify-center mb-6">
-                <Target className="w-7 h-7 text-[#00A896]" />
+              <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full -translate-y-1/2 translate-x-1/2 group-hover:scale-125 transition-transform duration-700" />
+
+              <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mb-8 relative z-10 group-hover:bg-primary group-hover:text-white transition-colors duration-300">
+                <Target className="w-8 h-8 text-primary group-hover:text-white transition-colors" />
               </div>
-              <h2 className="text-2xl md:text-3xl font-bold mb-4">
+
+              <h2 className="text-3xl font-bold mb-6 text-brand-navy dark:text-white relative z-10">
                 Our Mission
               </h2>
-              <p className="text-muted-foreground text-lg leading-relaxed">
+              <p className="text-muted-foreground text-lg leading-relaxed relative z-10">
                 To equip unemployed and vulnerable youth to enter the labor
                 market through market-driven vocational skills development,
                 entrepreneurship training, and Sexual and Reproductive Health
@@ -189,18 +195,22 @@ export default function AboutPage() {
             </motion.div>
 
             <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              className="premium-card p-8 md:p-10"
+              transition={{ delay: 0.1 }}
+              className="group bg-white rounded-[2rem] p-8 md:p-12 border border-border/50 shadow-sm hover:shadow-xl transition-all duration-500 relative overflow-hidden"
             >
-              <div className="w-14 h-14 rounded-2xl bg-[#FFD700]/10 flex items-center justify-center mb-6">
-                <Eye className="w-7 h-7 text-[#FFD700]" />
+              <div className="absolute top-0 right-0 w-64 h-64 bg-brand-yellow/5 rounded-full -translate-y-1/2 translate-x-1/2 group-hover:scale-125 transition-transform duration-700" />
+
+              <div className="w-16 h-16 rounded-2xl bg-brand-yellow/10 flex items-center justify-center mb-8 relative z-10 group-hover:bg-brand-yellow group-hover:text-brand-navy transition-colors duration-300">
+                <Eye className="w-8 h-8 text-brand-secondary-dark group-hover:text-brand-navy transition-colors" />
               </div>
-              <h2 className="text-2xl md:text-3xl font-bold mb-4">
+
+              <h2 className="text-3xl font-bold mb-6 text-brand-navy dark:text-white relative z-10">
                 Our Vision
               </h2>
-              <p className="text-muted-foreground text-lg leading-relaxed">
+              <p className="text-muted-foreground text-lg leading-relaxed relative z-10">
                 A society where every Ethiopian youth, regardless of their
                 background, has access to quality education, skills training,
                 and opportunities for sustainable socio-economic empowerment and
@@ -212,7 +222,7 @@ export default function AboutPage() {
       </section>
 
       {/* Values */}
-      <section className="section-padding bg-muted/30">
+      <section className="py-24 bg-muted/30">
         <div className="container-max px-4 md:px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -220,11 +230,11 @@ export default function AboutPage() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <span className="inline-block px-4 py-1.5 rounded-full bg-[#00A896]/10 text-[#00A896] text-sm font-medium mb-4">
+            <span className="text-primary font-bold text-sm tracking-widest uppercase mb-3 block">
               What Drives Us
             </span>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold">
-              Our Core <span className="text-[#00A896]">Values</span>
+            <h2 className="text-3xl md:text-5xl font-bold text-brand-navy dark:text-white">
+              Our Core <span className="text-primary-light">Values</span>
             </h2>
           </motion.div>
 
@@ -237,16 +247,15 @@ export default function AboutPage() {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
                 whileHover={{ y: -5 }}
-                className="premium-card p-6 text-center"
+                className="bg-background p-8 rounded-2xl text-center border border-border/50 hover:border-primary/20 hover:shadow-lg transition-all"
               >
-                <motion.div
-                  whileHover={{ scale: 1.1, rotate: 5 }}
-                  className="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-[#00A896]/20 to-[#001F3F]/20 flex items-center justify-center mb-4"
-                >
-                  <value.icon className="w-8 h-8 text-[#00A896]" />
-                </motion.div>
-                <h3 className="text-xl font-semibold mb-2">{value.title}</h3>
-                <p className="text-muted-foreground text-sm">
+                <div className="w-14 h-14 mx-auto rounded-xl bg-primary/5 flex items-center justify-center mb-6 text-primary">
+                  <value.icon className="w-7 h-7" />
+                </div>
+                <h3 className="text-xl font-bold mb-3 text-brand-navy dark:text-white">
+                  {value.title}
+                </h3>
+                <p className="text-muted-foreground text-sm leading-relaxed">
                   {value.description}
                 </p>
               </motion.div>
@@ -256,58 +265,68 @@ export default function AboutPage() {
       </section>
 
       {/* APHEET Program Section */}
-      <section className="section-padding bg-background" id="programs">
+      <section className="py-24 bg-background" id="programs">
         <div className="container-max px-4 md:px-6">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
-              <span className="inline-block px-4 py-1.5 rounded-full bg-[#FFD700]/10 text-[#001F3F] dark:text-[#FFD700] text-sm font-medium mb-4">
-                Our Flagship Program
-              </span>
-              <h2 className="text-3xl md:text-4xl font-bold mb-6">
+              <div className="inline-block px-4 py-1.5 rounded-full bg-brand-yellow/10 text-brand-secondary-dark text-sm font-bold mb-6">
+                OUR FLAGSHIP PROGRAM
+              </div>
+              <h2 className="text-3xl md:text-5xl font-bold mb-8 text-brand-navy dark:text-white">
                 APHEET Program
               </h2>
-              <p className="text-lg text-muted-foreground mb-6">
+              <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
                 The{" "}
-                <strong>
+                <strong className="text-brand-navy">
                   Alliance for Population, Health, and Environment in Ethiopia
                   (APHEET)
-                </strong>
+                </strong>{" "}
                 is a comprehensive four-year initiative funded by the Merck
-                Family Foundation through Karl Kübel Stiftung für Kind und
-                Familie (KKS) Germany.
+                Family Foundation.
               </p>
-              <div className="space-y-4 mb-8">
-                <div className="flex items-start gap-3">
-                  <ChevronRight className="w-5 h-5 text-[#00A896] mt-1 flex-shrink-0" />
-                  <p className="text-muted-foreground">
-                    <strong>Skills Development:</strong> Market-driven
-                    vocational training at Selam Technical and Vocational
-                    College
-                  </p>
-                </div>
-                <div className="flex items-start gap-3">
-                  <ChevronRight className="w-5 h-5 text-[#00A896] mt-1 flex-shrink-0" />
-                  <p className="text-muted-foreground">
-                    <strong>Entrepreneurship:</strong> Business skills and
-                    self-employment preparation for sustainable livelihoods
-                  </p>
-                </div>
-                <div className="flex items-start gap-3">
-                  <ChevronRight className="w-5 h-5 text-[#00A896] mt-1 flex-shrink-0" />
-                  <p className="text-muted-foreground">
-                    <strong>SRH Awareness:</strong> Sexual and Reproductive
-                    Health education for holistic youth development
-                  </p>
-                </div>
+
+              <div className="space-y-6 mb-10">
+                {[
+                  {
+                    title: "Skills Development",
+                    desc: "Vocational training at Selam Technical College",
+                    icon: GraduationCap,
+                  },
+                  {
+                    title: "Entrepreneurship",
+                    desc: "Business skills for sustainable livelihoods",
+                    icon: Target,
+                  },
+                  {
+                    title: "SRH Awareness",
+                    desc: "Holistic health education for youth",
+                    icon: Heart,
+                  },
+                ].map((item, i) => (
+                  <div key={i} className="flex items-start gap-4">
+                    <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0 mt-1">
+                      <item.icon className="w-5 h-5 text-primary" />
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-brand-navy dark:text-white text-lg">
+                        {item.title}
+                      </h4>
+                      <p className="text-muted-foreground">{item.desc}</p>
+                    </div>
+                  </div>
+                ))}
               </div>
-              <p className="text-sm text-muted-foreground italic">
-                Operating across Yeka and LemiKura sub-cities of Addis Ababa,
-                targeting 46 unemployed, vulnerable youth in 2025.
-              </p>
+
+              <div className="p-4 bg-muted/50 rounded-xl border-l-4 border-brand-yellow">
+                <p className="text-sm text-muted-foreground italic">
+                  Targeting 46 unemployed, vulnerable youth in Yeka and LemiKura
+                  sub-cities in 2025.
+                </p>
+              </div>
             </motion.div>
 
             <motion.div
@@ -316,19 +335,20 @@ export default function AboutPage() {
               viewport={{ once: true }}
               className="relative"
             >
-              <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl">
+              <div className="absolute -inset-4 bg-brand-yellow/20 rounded-[2rem] rotate-3 -z-10" />
+              <div className="relative aspect-4/3 rounded-2xl overflow-hidden shadow-2xl">
                 <Image
                   src="/images/posts/7d8e3b5b98de8326c20477e117870b5c.jpg"
                   alt="APHEET Program Workshop"
                   fill
-                  className="object-cover"
+                  className="object-cover hover:scale-105 transition-transform duration-700"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#001F3F]/80 via-transparent to-transparent" />
-                <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                  <p className="text-sm font-medium text-[#FFD700]">
+                <div className="absolute inset-0 bg-linear-to-t from-brand-navy/90 via-transparent to-transparent opacity-90" />
+                <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
+                  <div className="inline-block px-3 py-1 bg-brand-yellow/20 text-brand-yellow rounded-full text-xs font-bold mb-3 border border-brand-yellow/20">
                     March 2025
-                  </p>
-                  <h3 className="text-xl font-bold">
+                  </div>
+                  <h3 className="text-2xl font-bold">
                     APHEET Project Launch Workshop
                   </h3>
                 </div>
@@ -340,29 +360,36 @@ export default function AboutPage() {
 
       {/* Timeline */}
       <section
-        className="section-padding bg-[#001F3F] text-white"
+        className="py-24 bg-brand-navy text-white overflow-hidden relative"
         id="timeline"
       >
-        <div className="container-max px-4 md:px-6">
+        {/* Background elements */}
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2" />
+        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-brand-yellow/5 rounded-full blur-[80px] translate-y-1/2 -translate-x-1/3" />
+
+        <div className="container-max px-4 md:px-6 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-20"
           >
-            <span className="inline-block px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-sm text-sm font-medium mb-4">
+            <span className="text-brand-yellow font-bold text-sm tracking-widest uppercase mb-3 block">
               Our Journey
             </span>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
-              Milestones & <span className="text-[#FFD700]">Achievements</span>
+            <h2 className="text-3xl md:text-5xl font-bold">
+              Milestones &{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-yellow to-brand-yellow/60">
+                Achievements
+              </span>
             </h2>
           </motion.div>
 
-          <div className="relative">
+          <div className="relative max-w-4xl mx-auto">
             {/* Timeline Line */}
-            <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-white/20 md:-translate-x-0.5" />
+            <div className="absolute left-8 md:left-1/2 top-4 bottom-4 w-0.5 bg-white/10 md:-translate-x-0.5" />
 
-            <div className="space-y-8">
+            <div className="space-y-12">
               {timelineEvents.map((event, index) => (
                 <motion.div
                   key={event.year}
@@ -370,33 +397,38 @@ export default function AboutPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
-                  className={`relative flex items-center gap-8 ${
+                  className={`relative flex items-start gap-8 ${
                     index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
                   }`}
                 >
                   {/* Dot */}
-                  <div className="absolute left-4 md:left-1/2 w-4 h-4 rounded-full bg-[#00A896] border-4 border-[#001F3F] -translate-x-1/2 z-10" />
+                  <div className="absolute left-8 md:left-1/2 w-4 h-4 rounded-full bg-brand-yellow ring-4 ring-brand-navy -translate-x-[7px] md:-translate-x-[7px] z-10 mt-1.5 shadow-[0_0_15px_rgba(254,245,165,0.5)]" />
 
-                  {/* Content */}
+                  {/* Date (for desktop alternating) */}
                   <div
-                    className={`ml-12 md:ml-0 md:w-1/2 ${
-                      index % 2 === 0 ? "md:pr-12 md:text-right" : "md:pl-12"
+                    className={`hidden md:block w-1/2 pt-1 ${
+                      index % 2 === 0 ? "text-right pr-12" : "text-left pl-12"
                     }`}
                   >
-                    <div className="glass p-6 rounded-2xl">
-                      <div className="flex items-center gap-2 mb-2 justify-start md:justify-end">
-                        {index % 2 !== 0 && (
-                          <Calendar className="w-4 h-4 text-[#FFD700] md:hidden" />
-                        )}
-                        <span className="text-[#FFD700] font-semibold">
-                          {event.year}
-                        </span>
-                        {index % 2 === 0 && (
-                          <Calendar className="w-4 h-4 text-[#FFD700] hidden md:block" />
-                        )}
+                    <span className="text-2xl font-bold text-white/90">
+                      {event.year}
+                    </span>
+                  </div>
+
+                  {/* Content Card */}
+                  <div
+                    className={`pl-16 md:pl-0 w-full md:w-1/2 ${
+                      index % 2 === 0 ? "md:pl-12" : "md:pr-12"
+                    }`}
+                  >
+                    <div className="bg-white/5 border border-white/10 p-6 rounded-2xl hover:bg-white/10 transition-colors backdrop-blur-sm">
+                      <div className="md:hidden text-brand-yellow font-bold text-xl mb-2">
+                        {event.year}
                       </div>
-                      <h3 className="text-lg font-bold mb-1">{event.title}</h3>
-                      <p className="text-white/70 text-sm">
+                      <h3 className="text-lg font-bold mb-2 text-white">
+                        {event.title}
+                      </h3>
+                      <p className="text-white/60 text-sm leading-relaxed">
                         {event.description}
                       </p>
                     </div>
@@ -409,7 +441,7 @@ export default function AboutPage() {
       </section>
 
       {/* Team Section */}
-      <section className="section-padding bg-background" id="team">
+      <section className="py-24 bg-background" id="team">
         <div className="container-max px-4 md:px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -417,13 +449,13 @@ export default function AboutPage() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <span className="inline-block px-4 py-1.5 rounded-full bg-[#00A896]/10 text-[#00A896] text-sm font-medium mb-4">
+            <span className="text-primary font-bold text-sm tracking-widest uppercase mb-3 block">
               Meet Our Team
             </span>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
-              Leaders Driving <span className="text-[#00A896]">Change</span>
+            <h2 className="text-3xl md:text-5xl font-bold text-brand-navy dark:text-white">
+              Leaders Driving <span className="text-primary-light">Change</span>
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto mt-6">
               Our dedicated team brings together expertise in education,
               community development, and organizational leadership.
             </p>
@@ -437,45 +469,48 @@ export default function AboutPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                whileHover={{ y: -5 }}
-                className="premium-card group"
+                whileHover={{ y: -8 }}
+                className="group bg-white rounded-2xl overflow-hidden border border-border/50 shadow-sm hover:shadow-xl transition-all duration-300"
               >
-                <div className="relative aspect-[4/3] overflow-hidden">
+                <div className="relative aspect-4/3 overflow-hidden bg-muted">
                   <Image
                     src={member.image}
                     alt={member.name}
                     fill
-                    className="object-cover group-hover:scale-110 transition-transform duration-500"
+                    className="object-cover group-hover:scale-105 transition-transform duration-700 desaturate-0 group-hover:desaturate-0"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-                  <div className="absolute bottom-4 left-4 right-4">
-                    <h3 className="text-white font-bold text-lg">
+                  {/* Gradient Overlay */}
+                  <div className="absolute inset-0 bg-linear-to-t from-brand-navy/90 via-transparent to-transparent opacity-80" />
+
+                  <div className="absolute bottom-0 left-0 right-0 p-6">
+                    <h3 className="text-white font-bold text-xl mb-1">
                       {member.name}
                     </h3>
-                    <p className="text-[#FFD700] text-sm">{member.role}</p>
+                    <p className="text-brand-yellow font-medium text-sm tracking-wide">
+                      {member.role}
+                    </p>
                   </div>
                 </div>
+
                 <div className="p-6">
-                  <p className="text-muted-foreground text-sm mb-4">
+                  <p className="text-muted-foreground text-sm leading-relaxed mb-6 line-clamp-3">
                     {member.bio}
                   </p>
-                  <div className="flex gap-3">
-                    <motion.a
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.9 }}
+                  <div className="flex gap-3 pt-4 border-t border-border/50">
+                    <a
                       href="#"
-                      className="w-9 h-9 rounded-full bg-muted flex items-center justify-center hover:bg-[#00A896] hover:text-white transition-colors"
+                      className="w-8 h-8 rounded-full bg-muted flex items-center justify-center text-muted-foreground hover:bg-[#0077b5] hover:text-white transition-colors"
+                      aria-label="LinkedIn"
                     >
                       <Linkedin className="w-4 h-4" />
-                    </motion.a>
-                    <motion.a
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.9 }}
+                    </a>
+                    <a
                       href="#"
-                      className="w-9 h-9 rounded-full bg-muted flex items-center justify-center hover:bg-[#00A896] hover:text-white transition-colors"
+                      className="w-8 h-8 rounded-full bg-muted flex items-center justify-center text-muted-foreground hover:bg-brand-navy hover:text-white transition-colors"
+                      aria-label="Email"
                     >
                       <Mail className="w-4 h-4" />
-                    </motion.a>
+                    </a>
                   </div>
                 </div>
               </motion.div>

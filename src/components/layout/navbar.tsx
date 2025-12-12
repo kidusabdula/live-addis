@@ -68,9 +68,7 @@ export function Navbar() {
             <span
               className={cn(
                 "font-bold text-lg md:text-xl hidden sm:block transition-colors",
-                isScrolled
-                  ? "text-foreground"
-                  : "text-[#001F3F] dark:text-white"
+                isScrolled ? "text-brand-navy" : "text-white"
               )}
             >
               LIVE-ADDIS
@@ -86,17 +84,22 @@ export function Navbar() {
                 className={cn(
                   "relative px-4 py-2 text-sm font-medium transition-colors rounded-full",
                   pathname === item.href
-                    ? "text-[#00A896]"
+                    ? isScrolled
+                      ? "text-primary font-semibold"
+                      : "text-brand-yellow font-semibold"
                     : isScrolled
-                    ? "text-foreground/80 hover:text-foreground"
-                    : "text-[#001F3F]/80 hover:text-[#001F3F] dark:text-white/80 dark:hover:text-white"
+                    ? "text-muted-foreground hover:text-primary"
+                    : "text-white/80 hover:text-white"
                 )}
               >
                 {item.label}
                 {pathname === item.href && (
                   <motion.div
                     layoutId="navbar-indicator"
-                    className="absolute inset-0 rounded-full bg-[#00A896]/10"
+                    className={cn(
+                      "absolute inset-0 rounded-full",
+                      isScrolled ? "bg-primary/5" : "bg-white/10"
+                    )}
                     transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                   />
                 )}
@@ -113,10 +116,10 @@ export function Navbar() {
                 size="icon"
                 onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
                 className={cn(
-                  "rounded-full",
+                  "rounded-full transition-colors",
                   isScrolled
-                    ? ""
-                    : "text-[#001F3F] dark:text-white hover:bg-white/20"
+                    ? "text-muted-foreground hover:text-primary hover:bg-primary/5"
+                    : "text-white hover:bg-white/20"
                 )}
               >
                 <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
@@ -130,7 +133,10 @@ export function Navbar() {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-6 py-2.5 bg-[#00A896] text-white font-semibold rounded-full shadow-lg hover:bg-[#00A896]/90 transition-colors"
+                className={cn(
+                  "px-6 py-2.5 font-bold rounded-full shadow-lg transition-all",
+                  "bg-brand-yellow text-brand-navy hover:bg-white hover:shadow-xl"
+                )}
               >
                 Donate Now
               </motion.button>
@@ -145,8 +151,8 @@ export function Navbar() {
                   className={cn(
                     "rounded-full",
                     isScrolled
-                      ? ""
-                      : "text-[#001F3F] dark:text-white hover:bg-white/20"
+                      ? "text-brand-navy"
+                      : "text-white hover:bg-white/20"
                   )}
                 >
                   <Menu className="h-6 w-6" />
@@ -190,7 +196,7 @@ export function Navbar() {
                             className={cn(
                               "flex items-center px-4 py-3 rounded-xl text-base font-medium transition-colors",
                               pathname === item.href
-                                ? "bg-[#00A896]/10 text-[#00A896]"
+                                ? "bg-la-teal/10 text-la-teal"
                                 : "hover:bg-muted"
                             )}
                           >
@@ -208,7 +214,7 @@ export function Navbar() {
                       onClick={() => setIsOpen(false)}
                       className="block w-full"
                     >
-                      <Button className="w-full bg-[#00A896] hover:bg-[#00A896]/90 text-white font-semibold py-6 rounded-xl">
+                      <Button className="w-full bg-la-teal hover:bg-la-teal/90 text-white font-semibold py-6 rounded-xl">
                         Donate Now
                       </Button>
                     </Link>
